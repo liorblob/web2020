@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<head>
-  <title>Noodle</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/signup.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <style>
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
-  </style>
-</head>
-<body>
+  <head>
+    <title>Noodle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/signup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+    </style>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">Noodle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -41,155 +41,143 @@
             <button class="btn btn-success" type="submit">חפש</button>
           </form>
         </div>  
-      </nav>
-
-<div id="main" class="container"></div>
-
-<div class="text-center">
-  <h2 class="pt-4">הרשמה למערכת</h2> 
-</div>
-
-<div id="main" class="container">
-  <div class="col-sm-6">
-
-
-    <h2 class="pt-4">הרשמת משתמש חדש</h2>
-    <img class="pt-4" src="media/googleSignup.png">
-    <img class="pt-4" src="media/facebookSignup.png">
-    <form>
-      <div class="form-group">
-        <label class="pt-4" for="exampleInputEmail1">כתובת אימייל</label>
-        <input type="email" class="form-control" id="InputEmail" placeholder="הכנס כתובת אימייל">
-      </div>
-
-      <div class="form-group">
-        <label for="exampleInputEmail1">שם משתמש</label>
-        <input type="username" class="form-control" id="InputUsername" placeholder="הכנס שם משתמש">
-      </div>
-
-      <div class="form-group">
-        <label for="exampleInputPassword1">הקלד/ת סיסמה</label>
-        <input type="password" class="form-control" id="InputPassword" placeholder="הכנס סיסמה">
-      </div>
-
-
-      <h4 class="pt-4">פרטים אישיים</h4>
-
-      <div class="form-group">
-        <label for="exampleInputPassword1">שם פרטי</label>
-        <input type="firstName" class="form-control" id="InputFirstName" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">שם משפחה</label>
-        <input type="lastName" class="form-control" id="InputLastName" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">תאריך לידה</label>
-        <input type="date" class="form-control" id="InputBirthDate" placeholder="">
-      </div>
-
-
-      <p>בחר תמונת פרופיל:</p>
-          <div class="row">
-              <div class="card">
-                <div class="card-body text-center">
-                  <img src="media/male-profile.png">
-                </div>
+    </nav>
+    <div class="text-center">
+      <h2 class="pt-4">הרשמה למערכת</h2> 
+    </div>
+    <div id="main" class="container">
+      <div class="col-sm-6">
+        <h2 class="pt-4">הרשמת משתמש חדש</h2>
+        <img class="pt-4" src="media/googleSignup.png" alt="Sign up with Google">
+        <img class="pt-4" src="media/facebookSignup.png" alt="Sign up with Facebook">
+        <form>
+          <div class="form-group">
+            <label class="pt-4" for="exampleInputEmail1">כתובת אימייל</label>
+            <input type="email" class="form-control" id="InputEmail" placeholder="הכנס כתובת אימייל">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">שם משתמש</label>
+            <input type="text" class="form-control" id="InputUsername" placeholder="הכנס שם משתמש">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">הקלד/ת סיסמה</label>
+            <input type="password" class="form-control" id="InputPassword" placeholder="הכנס סיסמה">
+          </div>
+          <h4 class="pt-4">פרטים אישיים</h4>
+          <div class="form-group">
+            <label for="exampleInputPassword1">שם פרטי</label>
+            <input type="text" class="form-control" id="InputFirstName" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">שם משפחה</label>
+            <input type="text" class="form-control" id="InputLastName" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">תאריך לידה</label>
+            <input type="date" class="form-control" id="InputBirthDate">
+          </div>
+          <p>בחר תמונת פרופיל:</p>
+              <div class="row">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <img src="media/male-profile.png" alt="profile picture">
+                    </div>
+                  </div>
               </div>
-          </div>
-        </div><input type="file" class="form-control-file" id="exampleInputFile">
+            </div><input type="file" class="form-control-file" id="exampleInputFile">
+            <input type="file" accept="image/*" onchange="loadFile(event)">
+            <img id="output"/>
+            <script>
+              var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                  URL.revokeObjectURL(output.src) // free memory
+                }
+              };
+            </script>
+            <h4 class="pt-4">פרטי לימוד</h4>
+            <div class="form-group">
+              <label for="exampleInputPassword1">בחר/י מוסד לימוד</label>
+              <select class="form-control">
+                <option  value="" disabled selected>בחר/י מוסד לימוד</option>
+                <option>האקדמית תל אביב-יפו</option>
+                <option> הקרייה האקדמית אונו</option>
+                <option>אוניברסיטת תל אביב</option>
+                <option>אוניברסיטת באר שבע</option>
+                <option>הטכניון</option>
 
-
-          <h4 class="pt-4">פרטי לימוד</h4>
-          <div class="form-group">
-            <label for="exampleInputPassword1">בחר/י מוסד לימוד</label>
-            <select class="form-control">
-              <option  value="" disabled selected>בחר/י מוסד לימוד</option>
-              <option>האקדמית תל אביב-יפו</option>
-              <option> הקרייה האקדמית אונו</option>
-              <option>אוניברסיטת תל אביב</option>
-              <option>אוניברסיטת באר שבע</option>
-              <option>הטכניון</option>
-
-            </select>
-          </div>
-
-
-
-
-          
-          <div class="form-group">
-            <label for="exampleSelect2">בחר/י קורסים</label>
-            <select multiple class="form-control" id="exampleSelect2">
-              <option value="" disabled selected>בחר מוסד לימוד</option>
-              <option>אבחון וייעוץ ארגוני</option>
-              <option>אגדה</option>
-              <option>אלגברה לינארית</option>
-              <option>אסטרטגיה עסקית</option>
-              <option>אסטרטגיות בניהול</option>
-              <option>בעלי חיים במקרא</option>
-              <option>דיני ויחסי חסי עבודה</option>
-              <option>הדרכה ביבלוגרפית</option>
-              <option>היבטים כלכליים וסוציולוגים בתעסוקה,השכלה ומשפחה</option>
-              <option>הכתובה</option>
-              <option>הלכה,משפט ורפואה</option>
-              <option>המשאב האנושי בארגון</option>
-              <option>הנעת עובדים</option>
-              <option>התנהגות ארגונית א</option>
-              <option>התנהגות ארגונית ב</option>
-              <option>חגי ישראל -תלמוד, הלכה ומנהג (מתוקשב)</option>
-              <option>יסודות המימון</option>
-              <option>יסודות הניהול-מורחב</option>
-              <option>יסודות השיווק-מורחב</option>
-              <option>מבוא לכלכלה-מיקרו</option>
-              <option>מבוא לכלכלה-מיקרו- תרגיל</option>
-              <option>מבוא לכלכלה מקרו</option>
-              <option>מבוא לכלכלה מקרו-תרגיל</option>
-              <option>מבוא למינהל ציבורי ומדיניות ציבורית</option>
-              <option>מגדר אתניות ומעמד בארגונים</option>
-              <option>מיומנויות בניהול</option>
-              <option>מערכות מידע ניהוליות</option>
-              <option>מערכות מידע ניהוליות-תרגיל</option>
-              <option>מתמטיקה א'</option>
-              <option>מתמטיקה ב'</option>
-              <option>ניהול ותכנון תקציב</option>
-              <option>ניהול משאבי אנוש</option>
-              <option>ניהול קשרי עובדים מורחב (מתוקשב)</option>
-              <option>ניהול שינויים בארגונים</option>
-              <option>סטטיסטיקה ושימושי מחשב א'</option>
-              <option>סטטיסטיקה ושימושי מחשב ב</option>
-              <option>סמינריון- בניהול</option>
-              <option>סמינריון -במשאבי אנוש</option>
-              <option>פיתוח יזמות</option>
-              <option>פסיכולוגיה ארגונית</option>
-              <option>פסיכולוגיה חברתית</option>
-              <option>קבלת החלטות</option>
-              <option>שיטות מחקר</option>
-            </select>
-          </div>
-          
-      <button  type="submit" class="btn btn-primary">הרשמה</button>
-    </form>
-
-
-</div>       
-<div id="footer" class="jumbotron text-center">
-  <p class="text-center">© Noodle</p>
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link" href="#">צור קשר</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">תרומות</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">תרגום</a>
-    </li>  
-    <li class="nav-item">
-        <a class="nav-link" href="#">אודות</a>
-      </li>   
-  </ul>
-</div>
-
-</body>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleSelect2">בחר/י קורסים</label>
+              <select multiple class="form-control" id="exampleSelect2">
+                <option value="" disabled selected>בחר מוסד לימוד</option>
+                <option>אבחון וייעוץ ארגוני</option>
+                <option>אגדה</option>
+                <option>אלגברה לינארית</option>
+                <option>אסטרטגיה עסקית</option>
+                <option>אסטרטגיות בניהול</option>
+                <option>בעלי חיים במקרא</option>
+                <option>דיני ויחסי חסי עבודה</option>
+                <option>הדרכה ביבלוגרפית</option>
+                <option>היבטים כלכליים וסוציולוגים בתעסוקה,השכלה ומשפחה</option>
+                <option>הכתובה</option>
+                <option>הלכה,משפט ורפואה</option>
+                <option>המשאב האנושי בארגון</option>
+                <option>הנעת עובדים</option>
+                <option>התנהגות ארגונית א</option>
+                <option>התנהגות ארגונית ב</option>
+                <option>חגי ישראל -תלמוד, הלכה ומנהג (מתוקשב)</option>
+                <option>יסודות המימון</option>
+                <option>יסודות הניהול-מורחב</option>
+                <option>יסודות השיווק-מורחב</option>
+                <option>מבוא לכלכלה-מיקרו</option>
+                <option>מבוא לכלכלה-מיקרו- תרגיל</option>
+                <option>מבוא לכלכלה מקרו</option>
+                <option>מבוא לכלכלה מקרו-תרגיל</option>
+                <option>מבוא למינהל ציבורי ומדיניות ציבורית</option>
+                <option>מגדר אתניות ומעמד בארגונים</option>
+                <option>מיומנויות בניהול</option>
+                <option>מערכות מידע ניהוליות</option>
+                <option>מערכות מידע ניהוליות-תרגיל</option>
+                <option>מתמטיקה א'</option>
+                <option>מתמטיקה ב'</option>
+                <option>ניהול ותכנון תקציב</option>
+                <option>ניהול משאבי אנוש</option>
+                <option>ניהול קשרי עובדים מורחב (מתוקשב)</option>
+                <option>ניהול שינויים בארגונים</option>
+                <option>סטטיסטיקה ושימושי מחשב א'</option>
+                <option>סטטיסטיקה ושימושי מחשב ב</option>
+                <option>סמינריון- בניהול</option>
+                <option>סמינריון -במשאבי אנוש</option>
+                <option>פיתוח יזמות</option>
+                <option>פסיכולוגיה ארגונית</option>
+                <option>פסיכולוגיה חברתית</option>
+                <option>קבלת החלטות</option>
+                <option>שיטות מחקר</option>
+              </select>
+            </div> 
+          <button  type="submit" class="btn btn-primary">הרשמה</button>
+        </form>
+      </div>
+    </div>    
+    <div id="footer" class="jumbotron text-center">
+      <p class="text-center">© Noodle</p>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">צור קשר</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">תרומות</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">תרגום</a>
+        </li>  
+        <li class="nav-item">
+            <a class="nav-link" href="#">אודות</a>
+          </li>   
+      </ul>
+    </div>
+  </body>
 </html>
