@@ -8,12 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style>
-    .fakeimg {
-      height: 200px;
-      background: #aaa;
-    }
-    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -47,36 +41,37 @@
     </div>
     <div id="main" class="container">
       <div class="col-sm-6">
+        <form>
         <h2 class="pt-4">הרשמת משתמש חדש</h2>
         <img class="pt-4" src="media/googleSignup.png" alt="Sign up with Google">
         <img class="pt-4" src="media/facebookSignup.png" alt="Sign up with Facebook">
-        <form>
           <div class="form-group">
-            <label class="pt-4" for="exampleInputEmail1">כתובת אימייל</label>
-            <input type="email" class="form-control" id="InputEmail" placeholder="הכנס כתובת אימייל">
+            <label class="pt-4" for="InputEmail1">כתובת אימייל</label>
+            <input type="email" class="form-control" id="InputEmail" placeholder="הכנס כתובת אימייל" required>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">שם משתמש</label>
-            <input type="text" class="form-control" id="InputUsername" placeholder="הכנס שם משתמש">
+            <label for="InputUserName">שם משתמש</label>
+            <input type="text" class="form-control" id="InputUserName" placeholder="הכנס שם משתמש" required>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">הקלד/ת סיסמה</label>
-            <input type="password" class="form-control" id="InputPassword" placeholder="הכנס סיסמה">
+            <label for="InputPassword">הקלד/ת סיסמה</label>
+            <input type="password" class="form-control" id="InputPassword" placeholder="הכנס סיסמה" required>
           </div>
           <h4 class="pt-4">פרטים אישיים</h4>
           <div class="form-group">
-            <label for="exampleInputPassword1">שם פרטי</label>
-            <input type="text" class="form-control" id="InputFirstName" placeholder="">
+            <label for="InputFirstName">שם פרטי</label>
+            <input type="text" class="form-control" id="InputFirstName" placeholder="" required>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">שם משפחה</label>
-            <input type="text" class="form-control" id="InputLastName" placeholder="">
+            <label for="InputLastName">שם משפחה</label>
+            <input type="text" class="form-control" id="InputLastName" placeholder="" required>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">תאריך לידה</label>
-            <input type="date" class="form-control" id="InputBirthDate">
+            <label for="InputBirthDate">תאריך לידה</label>
+            <input type="date" class="form-control" id="InputBirthDate" required>
           </div>
           <p>בחר תמונת פרופיל:</p>
+          <!--
               <div class="row">
                   <div class="card">
                     <div class="card-body text-center">
@@ -84,34 +79,27 @@
                     </div>
                   </div>
               </div>
-            </div><input type="file" class="form-control-file" id="exampleInputFile">
-            <input type="file" accept="image/*" onchange="loadFile(event)">
-            <img id="output"/>
-            <script>
-              var loadFile = function(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-                output.onload = function() {
-                  URL.revokeObjectURL(output.src) // free memory
-                }
-              };
-            </script>
+            -->
+            <div class="profileImage">
+              <input id="fileUpload" type="file"/>
+              <div id="image-holder"></div>
+              <script src="js/fileUploader.js"></script>
+            </div>
             <h4 class="pt-4">פרטי לימוד</h4>
             <div class="form-group">
-              <label for="exampleInputPassword1">בחר/י מוסד לימוד</label>
-              <select class="form-control">
+              <label for="schoolSelect">בחר/י מוסד לימוד</label>
+              <select class="form-control" id="schoolSelect" required>
                 <option  value="" disabled selected>בחר/י מוסד לימוד</option>
                 <option>האקדמית תל אביב-יפו</option>
                 <option> הקרייה האקדמית אונו</option>
                 <option>אוניברסיטת תל אביב</option>
                 <option>אוניברסיטת באר שבע</option>
                 <option>הטכניון</option>
-
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleSelect2">בחר/י קורסים</label>
-              <select multiple class="form-control" id="exampleSelect2">
+              <label for="courseSelect">בחר/י קורסים</label>
+              <select multiple class="form-control" id="courseSelect" required>
                 <option value="" disabled selected>בחר מוסד לימוד</option>
                 <option>אבחון וייעוץ ארגוני</option>
                 <option>אגדה</option>

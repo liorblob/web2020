@@ -8,12 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <style>
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
-  </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -51,28 +45,22 @@
 
 <div id="main" class="container">
   <div class="col-sm-6">
-
-
+    <form>
     <h4 class="pt-4">פרטי התוכן</h4>
-
-
     <div class="form-group">
       <label for="school">מוסד לימוד</label>
-      <select class="form-control" id="InputSchool">
+      <select class="form-control" id="InputSchool" required>
         <option  value="" disabled selected>בחר/י מוסד לימוד</option>
         <option>האקדמית תל אביב-יפו</option>
         <option> הקרייה האקדמית אונו</option>
         <option>אוניברסיטת תל אביב</option>
         <option>אוניברסיטת באר שבע</option>
         <option>הטכניון</option>
-
       </select>
     </div>
-
-
     <div class="form-group">
       <label for="course">קורס</label>
-      <select class="form-control" id="InputCourse">
+      <select class="form-control" id="InputCourse" required>
         <option  value="" disabled selected>בחר/י קורס</option>
         <option>אבחון וייעוץ ארגוני</option>
         <option>אגדה</option>
@@ -119,40 +107,26 @@
         <option>שיטות מחקר</option>
       </select>
     </div>
-
-
       <div class="form-group">
         <label for="exampleInputPassword1">תאריך עדכניות</label>
-        <input type="date" class="form-control" id="InputBirthDate" placeholder="">
+        <input type="date" class="form-control" id="InputBirthDate" placeholder="" required>
       </div>
-
-
       <div class="form-group">
         <label for="exampleInputEmail1">כותרת</label>
-        <input type="email" class="form-control" id="InputEmail" placeholder="כותרת התוכן המועלה">
+        <input type="email" class="form-control" id="InputEmail" placeholder="כותרת התוכן המועלה" required>
       </div>
-
-
         <div class="form-group">
           <label for="exampleInputEmail1">תיאור התוכן</label>
-          <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="תיאור התוכן המועלה"></textarea>
+          <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="תיאור התוכן המועלה" required></textarea>
         </div>
-
-      <div class="form-group">
-        <label for="exampleInputPassword1">תאריך עדכניות</label>
-        <input type="date" class="form-control" id="InputBirthDate" placeholder="">
-      </div>
-
       <h4 class="pt-4">בחירת קובץ</h4>
-
-      <input type="file" class="form-control-file" id="exampleInputFile">
-
-      <button  type="submit" class="btn btn-primary">העלאה</button>
-
-
+      <input type="file" class="form-control-file" id="exampleInputFile" required>
+      <br>
+      <button type="submit" class="btn btn-primary">העלאה</button> 
+      <br><br>
+    </form>
   </div>
 </div>  
-
 <div id="footer" class="jumbotron text-center">
   <p class="text-center">© Noodle</p>
   <ul class="nav justify-content-center">
@@ -170,6 +144,5 @@
       </li>   
   </ul>
 </div>
-
 </body>
 </html>
