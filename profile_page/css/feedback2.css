@@ -1,0 +1,107 @@
+
+
+#popdiv {
+    direction: rtl;
+    background-color: #f2f2f2;
+    max-width: 550px;
+    width: 95%;
+    margin:0 auto;
+    
+    
+  }
+  
+  
+  .backdrop {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+  
+  
+  
+  
+  /*������*/
+  .br-theme-bars-1to10 .br-widget a {
+      display: block;
+      width: 33px;
+      height: 37px;
+      float: right;
+      background-color: cornflowerblue;
+      margin: 1px;
+      text-align: center;
+      
+  }
+  /*������ ���*/
+  .br-theme-bars-1to10 .br-widget a.br-active,
+  .br-theme-bars-1to10 .br-widget a.br-selected {
+      background-color: midnightblue;
+  }
+  
+  /*������*/
+  .br-theme-bars-1to10 .br-widget .br-current-rating {
+      font-size: 24px;
+      line-height: 2;
+      float: left;
+      padding: 0 20px 0 20px;
+      color: cornflowerblue;
+      font-weight: 400
+  }
+  
+  /*������� �� ����*/
+  @media print {
+      .br-theme-bars-1to10 .br-widget a {
+          border: 1px solid #b3b3b3;
+          background: white;
+          height: 38px;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box
+      }
+  }
+  
+  p {
+   padding-bottom: 40px;
+  }
+  
+  
+  form[id="fedform"]{
+      
+      background:#f1f1f1; 
+      max-width: 550px;
+      width: 95%; 
+      margin:0 auto;
+      padding-left:20px; 
+      padding-right:20px;
+      
+      padding-bottom: 20px;
+  }
+  
+  a{
+      color: white;
+  }
+  
+  
+  nav {
+      direction: rtl;
+  }
+  
+  
+  
+  button[type="submit"]{
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+  }
+  
+  
+    
+     
+  
+  
+  
+  

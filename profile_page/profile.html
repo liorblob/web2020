@@ -5,10 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/profile.css">
-  <link rel="stylesheet" type="text/css" href="css/calendar.css">
+  <link rel="stylesheet" type="text/css" href="css/feedback2.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      $("#but1").click(function() {
+        $(".backdrop").fadeTo(200, 1);
+      });
+      $("#but2").click(function() {
+          $(".backdrop").fadeOut(200);
+      });
+      
+    });
+</script>
+<script>
+$(function() {
+        function ratingEnable() {
+        $('#example-1to10').barrating('show', {
+        theme: 'bars-1to10'
+        });
+
+
+    }
+
+    ratingEnable();
+    });
+</script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -58,6 +83,47 @@
               </div>
             </div>
           </div>
+
+          <button id="but1" class="btn btn-link" value="">עדכן פרטי פרופיל</button>
+
+          <div class="backdrop">
+            <div id="popdiv" class="container-sm">
+              <nav class="navbar navbar-dark bg-primary" id="fednav">
+                <a class="navbar-brand" href="#">עדכון פרטי פרופיל</a>
+              </nav>
+              <form id="fedform">
+                <div class="form-group">
+                  <label for="formGroupExampleInput">כתובת אימייל</label>
+                  <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required>
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput">שם פרטי</label>
+                  <input type="text" class="form-control" placeholder="FirstName" aria-describedby="sizing-addon1" required>
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput">שם משפחה</label>
+                  <input type="text" class="form-control" placeholder="LastName" aria-describedby="sizing-addon1" required>
+                </div>
+                <button id="sumbit_btn" class="btn btn-primary" type="submit" onclick="ratingEnable">עדכן</button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <h2 class="pt-4">הגדרות לימוד</h2>
           <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו<a href="#" class="card-link">    עריכה</a></p>
           <p><strong>הקורסים שלי: </strong></p>
