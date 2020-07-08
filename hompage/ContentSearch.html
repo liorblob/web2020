@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content Search page</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css\ContentSearch.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script  type="text/javascript" charset="utf-8">
+        function updateTextInput(val) {
+            document.getElementById('textInput').value = val;
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Noodle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="#">חיפוש</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">שיתוף</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">קהילה</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">שיעורים פרטיים</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
+                <button class="btn btn-success" type="submit">חפש</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="container-sm">
+        <h2>חיפוש חומר לימודי</h2>
+        <form id="serform">
+            <div class="form-group">
+
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label for="inputmosad">מוסד לימודים</label>
+                        <select id="inputmosad" class="form-control">
+                            <option selected>הכל</option>
+                            <option>האקדמית תל אביב-יפו</option>
+                            <option>אוניברסיטת תל-אביב</option>
+                            <option>הטכניון</option>
+                            <option>הקריה האקדמית אונו</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputfromdate">תאריך עדכניות מ</label>
+                        <input type="date" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputtodate">עד</label>
+                        <input type="date" class="form-control" id="inputEmail4">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label for="inputfromdate2">תאריך העלאה מ</label>
+                        <input type="date" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputtodate2">עד</label>
+                        <input type="date" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputmosad">מסלול</label>
+                        <select id="inputmosad" class="form-control">
+                            <option selected>הכל</option>
+                            <option>ראשון ראשון - מערכות מידע</option>
+                            <option>....</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label for="inputtodate2">שם תורם</label>
+                        <input type="text" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputfromdate2">קורס</label>
+                        <input type="text" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputfromdate2">כותרת</label>
+                        <input type="text" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm">
+                        <label for="inputtodate2">סוג חומר</label>
+                        <input type="text" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="inputfromdate2">מרצה</label>
+                        <input type="text" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="rangevalue">
+                        <input type="text" id="textInput" value="" size="1" readonly>
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="formControlRange">דירוג</label>
+                        <input type="range" class="form-control-range" id="formControlRange" max="10" min="1" step="1" onchange="updateTextInput(this.value);" >
+                    </div>
+                    </div>
+               
+                </div> 
+</form>
+        <button type="submit" id="subid" class="btn btn-primary">חפש</button>
+
+
+     </div>
+
+    <div id="footer" class="jumbotron text-center">
+        <p class="text-center">© Noodle</p>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">צור קשר</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">תרומות</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">תרגום</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">אודות</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+
+</body>
+</html>
