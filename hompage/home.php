@@ -9,8 +9,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="javascript/cookies.js"></script>
 </head>
-<body>
+<body onload="checkCookie()">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">Noodle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -29,7 +30,10 @@
             </li>  
             <li class="nav-item">
                 <a class="nav-link" href="#">שיעורים פרטיים</a>
-              </li>   
+            </li>   
+            <li class="nav-item">
+                <a class="nav-link" href="#">פרופיל</a>
+            </li>   
           </ul>
           <form class="form-inline">
             <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
@@ -39,7 +43,7 @@
       </nav>
       
 <div class="text-center">
-  <h2>שלום ישראל ישראלי</h2> 
+  <h2 id="username">שלום ישראל ישראלי</h2> 
 </div>
 
 
@@ -203,6 +207,7 @@
           </tr>
         </thead>
         <tbody>
+        
         <?php
           
           $servername = "localhost:3306";
@@ -211,42 +216,44 @@
           $dbname="noodle";
           
           // Create connection
+          error_reporting(E_ALL ^ E_WARNING); 
           $conn = new mysqli($servername, $username, $password,$dbname);
           
           // Check connection
           if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-          } 
-
-          $id = $_GET["id"];
-
-          $sql = 'SELECT r.id AS request_id, r.description AS request_desc, r.type AS request_type, r.status AS request_status, r.date AS request_date, c.name AS course_name FROM `requests` AS r, `courses` AS c WHERE c.id = r.course_id AND r.user_id ='.$id;
-          $result = $conn->query($sql);
-          
-          if ($result->num_rows > 0) {
-              // output data of each row
-              while($row = $result->fetch_assoc()) {
-                switch ($row["request_status"]) {
-                  case "נענה":
-                    $cell_class = "bg-success";
-                    break;
-                  default:
-                    $cell_class = "bg-info";
-                  }
-                  echo '<tr>
-                  <td>'.$row["request_id"].'</td>
-                  <td>'.$row["request_date"].'</td>
-                  <td>'.$row["request_desc"].'</td>
-                  <td>'.$row["course_name"].'</td>
-                  <td>'.$row["request_type"].'</td>
-                  <td class="'.$cell_class.'">'.$row["request_status"].'</td>
-                </tr>';
-              }
-          } else {
-              echo '<h4 class="card-title">לא נמצאו בקשות';
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
           }
-          
-          $conn->close();
+          else { 
+            $id = $_GET["id"];
+
+            $sql = 'SELECT r.id AS request_id, r.description AS request_desc, r.type AS request_type, r.status AS request_status, r.date AS request_date, c.name AS course_name FROM `requests` AS r, `courses` AS c WHERE c.id = r.course_id AND r.user_id ='.$id;
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                  switch ($row["request_status"]) {
+                    case "נענה":
+                      $cell_class = "bg-success";
+                      break;
+                    default:
+                      $cell_class = "bg-info";
+                    }
+                    echo '<tr>
+                    <td>'.$row["request_id"].'</td>
+                    <td>'.$row["request_date"].'</td>
+                    <td>'.$row["request_desc"].'</td>
+                    <td>'.$row["course_name"].'</td>
+                    <td>'.$row["request_type"].'</td>
+                    <td class="'.$cell_class.'">'.$row["request_status"].'</td>
+                  </tr>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
+            }
+            
+            $conn->close();
+          }
           ?>  
         </tbody>
       </table>
@@ -263,35 +270,37 @@
           $dbname="noodle";
           
           // Create connection
+          error_reporting(E_ALL ^ E_WARNING);
           $conn = new mysqli($servername, $username, $password,$dbname);
           
           // Check connection
           if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
+            echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
           } 
-          
-          $sql = "SELECT c.name AS course_name, c.date AS course_date, p.name AS prof_name, i.name AS inst_name FROM `courses` AS c, `institutions` AS i, `professors` AS p WHERE c.prof_id = p.id AND c.inst_id = i.id";
-          $result = $conn->query($sql);
-          
-          if ($result->num_rows > 0) {
-              // output data of each row
-              while($row = $result->fetch_assoc()) {
-                  echo '<li class="nav-item">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">'.$row["course_name"].' - '.$row["course_date"].'</h4>
-                      <p class="card-text">קורס המועבר ע"י '.$row["prof_name"].' במוסד '.$row["inst_name"].'</p>
-                      <a href="#" class="card-link">חומרי לימוד</a>
-                      <a href="#" class="card-link">אירועים קרובים</a>
+          else {
+            $sql = "SELECT c.name AS course_name, c.date AS course_date, p.name AS prof_name, i.name AS inst_name FROM `courses` AS c, `institutions` AS i, `professors` AS p WHERE c.prof_id = p.id AND c.inst_id = i.id";
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<li class="nav-item">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">'.$row["course_name"].' - '.$row["course_date"].'</h4>
+                        <p class="card-text">קורס המועבר ע"י '.$row["prof_name"].' במוסד '.$row["inst_name"].'</p>
+                        <a href="#" class="card-link">חומרי לימוד</a>
+                        <a href="#" class="card-link">אירועים קרובים</a>
+                      </div>
                     </div>
-                  </div>
-                  </li>';
-              }
-          } else {
-              echo '<h4 class="card-title">לא נמצאו קורסים';
+                    </li>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו קורסים</h4>';
+            }
+            
+            $conn->close();
           }
-          
-          $conn->close();
           ?>  
         </ul>
         <br>
@@ -360,7 +369,7 @@
         <a class="nav-link" href="#">תרגום</a>
       </li>  
       <li class="nav-item">
-          <a class="nav-link" href="#">אודות</a>
+          <a class="nav-link" href="/noodle/about.html">אודות</a>
         </li>   
     </ul>
 </div>
