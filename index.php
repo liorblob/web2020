@@ -10,7 +10,7 @@
   $conn = new mysqli($servername, $username, $password,$dbname);
   // Check connection
   if ($conn->connect_error) {
-     echo "<script type='text/javascript'>alert('תקלה בהתחברות למסד הנתונים');</script>";
+     echo "<script type='text/javascript'>alert(' תקלה בהתחברות למסד הנתונים " . $conn->conntect_error . "');</script>";
      die();
   }
   else {
@@ -31,7 +31,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="javascript/cookies.js"></script>
 </head>
-<body onload="checkCookie()">
+<body onload="checkUserCookie()">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">Noodle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -368,7 +368,7 @@
         <a class="nav-link" href="#">תרגום</a>
       </li>  
       <li class="nav-item">
-          <a class="nav-link" href="/noodle/about.html">אודות</a>
+          <a class="nav-link" href="includes/about.html">אודות</a>
         </li>   
     </ul>
 </div>

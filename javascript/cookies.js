@@ -20,7 +20,7 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie() {
+function checkUserCookie() {
   var user = getCookie("username");
   if (user != "") {
       document.getElementById("username").innerHTML = "שלום " + user;
