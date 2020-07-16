@@ -55,7 +55,6 @@
 </div>
 <div id="main" class="container">
   <div class="row">
-
     <div class="col-sm-12">
       <h2 class="pt-4">הגדרות פרופיל</h2>
       <p><strong>שם משתמש: </strong>Israel1991</p>
@@ -68,12 +67,12 @@
           <div class="card">
             <div class="card-body text-center">
               <img src="media/profilepicture.jpg">
-              <a href="#" class="card-link">העלאת תמונה</a>
             </div>
           </div>
         </div>
       </div>
-      <button id="but1" class="btn btn-link" value="">עדכן פרטי פרופיל</button>
+      <br>
+      <button id="but1" class="btn btn-primary" value="">עדכן פרטי פרופיל</button>
       <div class="backdrop">
         <div id="popdiv" class="container-sm">
           <nav class="navbar navbar-dark bg-primary" id="fednav">
@@ -81,16 +80,23 @@
           </nav>
           <form id="fedform">
             <div class="form-group">
-              <label for="formGroupExampleInput">כתובת אימייל</label>
+              <label for="EmailInput">כתובת אימייל</label>
               <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput">שם פרטי</label>
+              <label for="FirstNameInput">שם פרטי</label>
               <input type="text" class="form-control" placeholder="FirstName" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput">שם משפחה</label>
+              <label for="LastNameInput">שם משפחה</label>
               <input type="text" class="form-control" placeholder="LastName" aria-describedby="sizing-addon1" required>
+            </div>
+            <div class="form-group">
+              <label for="ProfilePictureInput">עדכון תמונת פרופיל</label>
+              <div class="profileImage"></div>
+                <input id="fileUpload" type="file" required/>
+              <div id="image-holder"></div>
+              <script src="js/fileUploader.js"></script>
             </div>
             <button id="but2" class="btn btn-primary" type="submit">עדכן</button>
           </form>
@@ -99,96 +105,100 @@
     </div>
     <div class="col-sm-12">
       <h2 class="pt-4">הגדרות לימוד</h2>
-      <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו<a href="#" class="card-link">    עריכה</a></p>
+      <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו</p>
       <p><strong>הקורסים שלי: </strong></p>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>קוד קורס</th>
-            <th>תחום</th>
-            <th>קורס</th>
-            <th>מרצה</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1698456</td>
-            <td>מתמטיקה</td>
-            <td>מתמטיקה ב'</td>
-            <td>רון בראון</td>
-          </tr>
-          <tr>
-            <td>7798456</td>
-            <td>מתמטיקה</td>
-            <td>מתמטיקה דיסקרטית</td>
-            <td>רון בראון</td>
-          </tr>
-          <tr>
-            <td>4887648</td>
-            <td>כלכלה</td>
-            <td>מאקרו כלכלה</td>
-            <td>דניאל כהן</td>
-          </tr>
-          <tr>
-            <td>4887646</td>
-            <td>פילוסופיה</td>
-            <td>לוגיקה א'</td>
-            <td>אסף טל</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>קוד קורס</th>
+              <th>תחום</th>
+              <th>קורס</th>
+              <th>מרצה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1698456</td>
+              <td>מתמטיקה</td>
+              <td>מתמטיקה ב'</td>
+              <td>רון בראון</td>
+            </tr>
+            <tr>
+              <td>7798456</td>
+              <td>מתמטיקה</td>
+              <td>מתמטיקה דיסקרטית</td>
+              <td>רון בראון</td>
+            </tr>
+            <tr>
+              <td>4887648</td>
+              <td>כלכלה</td>
+              <td>מאקרו כלכלה</td>
+              <td>דניאל כהן</td>
+            </tr>
+            <tr>
+              <td>4887646</td>
+              <td>פילוסופיה</td>
+              <td>לוגיקה א'</td>
+              <td>אסף טל</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <h2 class="pt-4">ההעלאות שלי</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>תאריך</th>
-            <th>תחום</th>
-            <th>קורס</th>
-            <th>כותרת</th>
-            <th>סוג</th>
-            <th>סטטוס</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>04/03/2020</td>
-            <td>מתמטיקה</td>
-            <td>מתמטיקה ב'</td>
-            <td>סיכום תרגולים 2020</td>
-            <td>סיכום</td>
-            <td class="bg-success">העלאה אושרה</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>01/04/2020</td>
-            <td>מתמטיקה</td>
-            <td>מתמטיקה ב'</td>
-            <td>דף נוסחאות 2020</td>
-            <td>סיכום</td>
-            <td class="bg-info">ממתין לאישור</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>07/04/2020</td>
-            <td>מתמטיקה</td>
-            <td>מתמטיקה ב'</td>
-            <td>מועד א' פתור 29.03.20 - ציון 96</td>
-            <td>מבחן</td>
-            <td class="bg-info">ממתין לאישור</td>
-          </tr>
-          <tr>
-            <td><a href="#" class="card-link">העלה קובץ</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>תאריך</th>
+              <th>תחום</th>
+              <th>קורס</th>
+              <th>כותרת</th>
+              <th>סוג</th>
+              <th>סטטוס</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>04/03/2020</td>
+              <td>מתמטיקה</td>
+              <td>מתמטיקה ב'</td>
+              <td>סיכום תרגולים 2020</td>
+              <td>סיכום</td>
+              <td class="bg-success">העלאה אושרה</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>01/04/2020</td>
+              <td>מתמטיקה</td>
+              <td>מתמטיקה ב'</td>
+              <td>דף נוסחאות 2020</td>
+              <td>סיכום</td>
+              <td class="bg-info">ממתין לאישור</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>07/04/2020</td>
+              <td>מתמטיקה</td>
+              <td>מתמטיקה ב'</td>
+              <td>מועד א' פתור 29.03.20 - ציון 96</td>
+              <td>מבחן</td>
+              <td class="bg-info">ממתין לאישור</td>
+            </tr>
+            <tr>
+              <td><a href="contentUpload.html" class="card-link">העלה קובץ</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div> 
   </div>
 </div>       
