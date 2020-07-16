@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="../javascript/tooltip.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -43,8 +44,8 @@
       <div class="col-sm-6">
         <form>
         <h2 class="pt-4">הרשמת משתמש חדש</h2>
-        <img class="pt-4" src="../media/googleSignup.png" alt="Sign up with Google">
-        <img class="pt-4" src="../media/facebookSignup.png" alt="Sign up with Facebook">
+        <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="../media/googleSignup.png" alt="Sign up with Google"></a>
+        <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="../media/facebookSignup.png" alt="Sign up with Facebook"></a>
           <div class="form-group">
             <label class="pt-4" for="InputEmail1">כתובת אימייל</label>
             <input type="email" class="form-control" id="InputEmail" placeholder="הכנס כתובת אימייל" required>

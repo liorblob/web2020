@@ -10,10 +10,6 @@ nav form {
     padding-right: 200px;
 }
 
-#recommended img {
-    width:30%;
-    height:40%;
-}
 
 .profileImage img {
     width:250px;
@@ -34,3 +30,7 @@ nav form {
     margin-bottom:0;
 }
 
+form img {
+    width: 250px;
+    height: 60px;
+}

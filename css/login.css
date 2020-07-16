@@ -10,13 +10,8 @@ nav form {
     padding-right: 200px;
 }
 
-#recommended img {
-    width:30%;
-    height:40%;
-}
-
-#title{
-    margin-bottom:0;
+.form-control {
+    width: 550px;
 }
 
 #main{

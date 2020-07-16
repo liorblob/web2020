@@ -28,4 +28,7 @@ nav form {
     margin-bottom:0;
 }
 
+.tooltip {
+    direction: rtl;
+}
 
