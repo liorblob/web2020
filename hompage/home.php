@@ -1,3 +1,23 @@
+<?php
+ $servername = "localhost:3306";
+ $username = "dbuser";
+ $password = "123456";
+ $dbname="noodle";
+
+ error_reporting(E_ALL ^ E_WARNING);
+ 
+ // Create connection
+ $conn = new mysqli($servername, $username, $password,$dbname);
+ // Check connection
+ if ($conn->connect_error) {
+    echo "<script type='text/javascript'>alert('תקלה בהתחברות למסד הנתונים');</script>";
+    die();
+ }
+ else {
+    $conn->query("SET NAMES 'utf8'");
+ }
+?>
+
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
@@ -200,7 +220,7 @@
           <tr>
             <th>#</th>
             <th>תאריך</th>
-            <th>תיאור</th>
+            <th>תיאור</t
             <th>קורס</th>
             <th>סוג</th>
             <th>סטטוס</th>
@@ -209,15 +229,6 @@
         <tbody>
         
         <?php
-          
-          $servername = "localhost:3306";
-          $username = "dbuser";
-          $password = "123456";
-          $dbname="noodle";
-          
-          // Create connection
-          error_reporting(E_ALL ^ E_WARNING); 
-          $conn = new mysqli($servername, $username, $password,$dbname);
           
           // Check connection
           if ($conn->connect_error) {
@@ -251,8 +262,6 @@
             } else {
                 echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
             }
-            
-            $conn->close();
           }
           ?>  
         </tbody>
@@ -263,16 +272,6 @@
         <h2>הקורסים שלי</h2>
         <ul class="nav flex-column">
           <?php
-          
-          $servername = "localhost:3306";
-          $username = "dbuser";
-          $password = "123456";
-          $dbname="noodle";
-          
-          // Create connection
-          error_reporting(E_ALL ^ E_WARNING);
-          $conn = new mysqli($servername, $username, $password,$dbname);
-          
           // Check connection
           if ($conn->connect_error) {
             echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
