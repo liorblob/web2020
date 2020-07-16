@@ -1,37 +1,52 @@
 <?php
-  $servername = "localhost:3306";
-  $username = "dbuser";
-  $password = "123456";
-  $dbname="noodle";
+  include 'includes/dbconn.php';
+  session_start();
 
-  error_reporting(E_ALL ^ E_WARNING);
- 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password,$dbname);
-  // Check connection
-  if ($conn->connect_error) {
-     echo "<script type='text/javascript'>alert(' תקלה בהתחברות למסד הנתונים " . $conn->conntect_error . "');</script>";
-     die();
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+    header("location: includes/home.php");
+    exit;
   }
-  else {
-     $conn->query("SET NAMES 'utf8'");
+  
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      if (!$username || !$password){
+        exit;
+      }
+
+      $sql = "SELECT id, name FROM users WHERE (username = '$username'  OR email = '$username') AND password = '$password'";
+      $result = $conn->query($sql);
+      if (!$result || $result->num_rows == 0) {
+        echo "<script type='text/javascript'>alert('המשתמש לא נמצא');</script>";
+      } else {
+        echo "<script type='text/javascript'>alert('המשתמש נמצא');</script>";
+        $row = $result->fetch_assoc();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["id"] = $row["id"];
+        $_SESSION["name"] = $row["name"];
+
+        header("location: includes/home.php");
+      }
+    // Close connection
+    
+    $conn->close();
   }
 ?>
-
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/home.css">
-  <link rel="stylesheet" type="text/css" href="css/calendar.css">
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="javascript/cookies.js"></script>
+  <script src="javascript/tooltip.js"></script>
 </head>
-<body onload="checkUserCookie()">
+<body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">Noodle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -50,10 +65,7 @@
             </li>  
             <li class="nav-item">
                 <a class="nav-link" href="#">שיעורים פרטיים</a>
-            </li>   
-            <li class="nav-item">
-                <a class="nav-link" href="#">פרופיל</a>
-            </li>   
+              </li>   
           </ul>
           <form class="form-inline">
             <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
@@ -61,316 +73,57 @@
           </form>
         </div>  
       </nav>
-      
+
+<div id="main" class="container"></div>
+
 <div class="text-center">
-  <h2 id="username">שלום ישראל ישראלי</h2> 
+  <h2 class="pt-4">כניסה למערכת</h2> 
 </div>
 
+<div id="main" class="container">
+  <div class="col-sm-12">
+    <h2 class="pt-4">התחברות באמצעות משתמש קיים</h2>
 
-<main id="main" class="container">
-  <div class="row">
-    <section class="col-sm-6">
-      <h2>לוח זמנים</h2>
-       <!-- Calendar -->
-      <div class="calendar shadow bg-white p-2">
-        <div class="d-flex align-items-center">
-          <h2 class="month font-weight-bold text-uppercase">יולי 2020</h2>
-        </div>
-        <p class="font-italic text-muted mb-5">אין לך אירועים היום.</p>
-        <ol class="day-names list-unstyled">
-          <li class="font-weight-bold text-uppercase">א</li>
-          <li class="font-weight-bold text-uppercase">ב</li>
-          <li class="font-weight-bold text-uppercase">ג</li>
-          <li class="font-weight-bold text-uppercase">ד</li>
-          <li class="font-weight-bold text-uppercase">ה</li>
-          <li class="font-weight-bold text-uppercase">ו</li>
-          <li class="font-weight-bold text-uppercase">ש</li>
-        </ol>
-
-        <ol class="days list-unstyled">
-          <li>
-            <div class="date">1</div>
-            <div class="event bg-success">הגשת מטלה במתמטיקה ב'</div>
-          </li>
-          <li>
-            <div class="date">2</div>
-          </li>
-          <li>
-            <div class="date">3</div>
-          </li>
-          <li>
-            <div class="date">4</div>
-          </li>
-          <li>
-            <div class="date">5</div>
-          </li>
-          <li>
-            <div class="date">6</div>
-          </li>
-          <li>
-            <div class="date">7</div>
-          </li>
-          <li>
-            <div class="date">8</div>
-          </li>
-          <li>
-            <div class="date">9</div>
-          </li>
-          <li>
-            <div class="date">10</div>
-          </li>
-          <li>
-            <div class="date">11</div>
-          </li>
-          <li>
-            <div class="date">12</div>
-          </li>
-          <li>
-            <div class="date">13</div>
-            <div class="event all-day begin span-2 bg-warning">ביצוע מטלה</div>
-          </li>
-          <li>
-            <div class="date">14</div>
-          </li>
-          <li>
-            <div class="date">15</div>
-            <div class="event all-day end bg-success">הגשת מטלה</div>
-          </li>
-          <li>
-            <div class="date">16</div>
-          </li>
-          <li class="bg-info">
-            <div class="date">17</div>
-          </li>
-          <li>
-            <div class="date">18</div>
-          </li>
-          <li>
-            <div class="date">19</div>
-          </li>
-          <li>
-            <div class="date">20</div>
-          </li>
-          <li>
-            <div class="date">21</div>
-          </li>
-          <li>
-            <div class="date">22</div>
-            <div class="event bg-primary">מבחן במתמטיקה ב'</div>
-          </li>
-          <li>
-            <div class="date">23</div>
-          </li>
-          <li>
-            <div class="date">24</div>
-          </li>
-          <li>
-            <div class="date">25</div>
-          </li>
-          <li>
-            <div class="date">26</div>
-          </li>
-          <li>
-            <div class="date">27</div>
-          </li>
-          <li>
-            <div class="date">28</div>
-          </li>
-          <li>
-            <div class="date">29</div>
-          </li>
-          <li>
-            <div class="date">30</div>
-          </li>
-          <li>
-            <div class="date">31</div>
-          </li>
-          <li class="outside">
-            <div class="date">1</div>
-          </li>
-          <li class="outside">
-            <div class="date">2</div>
-          </li>
-          <li class="outside">
-            <div class="date">3</div>
-          </li>
-          <li class="outside">
-            <div class="date">4</div>
-          </li>
-        </ol>
+    <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="media/googleLogin.png"></a>
+   
+    <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="media/facebookLogin.png"></a>
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+      <div class="form-group">
+        <label class="pt-4" for="username">שם משתמש</label>
+        <input type="username" class="form-control" name="username" id="email" aria-describedby="emailHelp" placeholder="הכנס שם משתמש" required>
+        <small id="emailHelp" class="form-text text-muted">ניתן להזין גם כתובת אימייל</small>
       </div>
-      <h3>אירועים קרובים</h3>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#">מבחן במתמטיקה ב'</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">הגשת מטלה בניהול פרויקטים</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">הגשת מטלה בממשקי אדם מחשב</a>
-        </li>
-      </ul>
-      <hr class="d-sm-none">
-    </section>
-    <section class="col-sm-6">
-      <h2>הבקשות שלי</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>תאריך</th>
-            <th>תיאור</th>
-            <th>קורס</th>
-            <th>סוג</th>
-            <th>סטטוס</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-        <?php
-          
-          // Check connection
-          if ($conn->connect_error) {
-              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
-          }
-          else { 
-            $id = $_GET["id"];
+      <div class="form-group">
+        <label for="password">סיסמה</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="הכנס סיסמה" required>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="check">
+        <label class="form-check-label" for="check">זכור אותי</label>
+      </div>
+      <button type="submit" class="btn btn-primary">כניסה</button>
+    </form>
 
-            $sql = 'SELECT r.id AS request_id, r.description AS request_desc, r.type AS request_type, r.status AS request_status, r.date AS request_date, c.name AS course_name FROM `requests` AS r, `courses` AS c WHERE c.id = r.course_id AND r.user_id ='.$id;
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                  switch ($row["request_status"]) {
-                    case "נענה":
-                      $cell_class = "bg-success";
-                      break;
-                    default:
-                      $cell_class = "bg-info";
-                    }
-                    echo '<tr>
-                    <td>'.$row["request_id"].'</td>
-                    <td>'.$row["request_date"].'</td>
-                    <td>'.$row["request_desc"].'</td>
-                    <td>'.$row["course_name"].'</td>
-                    <td>'.$row["request_type"].'</td>
-                    <td class="'.$cell_class.'">'.$row["request_status"].'</td>
-                  </tr>';
-                }
-            } else {
-                echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
-            }
-          }
-          ?>  
-        </tbody>
-      </table>
-      <br>
-    </section>
-      <section class="col-sm-12">
-        <h2>הקורסים שלי</h2>
-        <ul class="nav flex-column">
-          <?php
-          // Check connection
-          if ($conn->connect_error) {
-            echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
-          } 
-          else {
-            $sql = "SELECT c.name AS course_name, c.date AS course_date, p.name AS prof_name, i.name AS inst_name FROM `courses` AS c, `institutions` AS i, `professors` AS p WHERE c.prof_id = p.id AND c.inst_id = i.id";
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    echo '<li class="nav-item">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">'.$row["course_name"].' - '.$row["course_date"].'</h4>
-                        <p class="card-text">קורס המועבר ע"י '.$row["prof_name"].' במוסד '.$row["inst_name"].'</p>
-                        <a href="#" class="card-link">חומרי לימוד</a>
-                        <a href="#" class="card-link">אירועים קרובים</a>
-                      </div>
-                    </div>
-                    </li>';
-                }
-            } else {
-                echo '<h4 class="card-title">לא נמצאו קורסים</h4>';
-            }
-            
-            $conn->close();
-          }
-          ?>  
-        </ul>
-        <br>
-        </section>
-      <section class="col-sm-12" id="recommended">
-        <h2>המלצות מערכת</h2>
-        <p>המלצות בעקבות <strong>מבחן במתמטיקה ב'</strong> בתאריך <strong>22.05.2020</strong></p>
-        <div class="card-group">
-          <div class="card">
-            <div class="card-body text-center">
-              <img src="media/word.png">
-              <a href="#" class="card-link">סיכום מתמטיקה ב' 2017</a>
-              <p>דירוג: <strong>7.8</strong></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body text-center">
-              <img src="media/pdf.png">
-              <a href="#" class="card-link">מבחן במתמטיקה ב' ציון 92</a>
-              <p>דירוג: <strong>9.1</strong></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body text-center">
-              <img src="media/pdf.png">
-              <a href="#" class="card-link">שיעור מסכם אינטגרלים</a>
-              <p>דירוג: <strong>6.3</strong></p>
-            </div>
-          </div>
-        </div>
-        <h5>קבוצות שעשויות להיות רלוונטיות</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="#">לומדים ונהנים</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">מתמטיקה ב' 22.5</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">מערכות מידע מסלול ערב אקדמית ת"א יפו</a>
-          </li>  
-          <li class="nav-item">
-            <a class="nav-link" href="#">המלצות נוספות...</a>
-          </li>  
-        </ul>
-        <br>
-        </section>
-      <section class="col-sm-12">
-        <h2>מועדפים</h2>
-        <p>אין לך מועדפים עדיין.</p>
-        <br>
-        </section>
-    </div>
-</main>
+    <h3 class="pt-4">אין לך עדיין משתמש?</h3> <p><strong><a href="signup.html" class="card-link">הירשם למערכת</a></strong></p> 
 
+  </div>
+</div>       
 <div id="footer" class="jumbotron text-center">
-    <p class="text-center">© Noodle</p>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link" href="#">צור קשר</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">תרומות</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">תרגום</a>
-      </li>  
-      <li class="nav-item">
-          <a class="nav-link" href="includes/about.html">אודות</a>
-        </li>   
-    </ul>
+  <p class="text-center">© Noodle</p>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#">צור קשר</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">תרומות</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">תרגום</a>
+    </li>  
+    <li class="nav-item">
+        <a class="nav-link" href="#">אודות</a>
+      </li>   
+  </ul>
 </div>
 
 </body>

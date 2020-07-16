@@ -25,6 +25,6 @@ function checkUserCookie() {
   if (user != "") {
       document.getElementById("username").innerHTML = "שלום " + user;
   } else {
-    // window.location.href = "/noodle/about.html"
+     window.location.href = "../index.php"
   }
 }
