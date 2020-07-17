@@ -1,22 +1,6 @@
-body {
-    background-color: #f2f2f2;
-}
-
-nav {
-    direction: rtl;
-}
-
-nav form {
-    padding-right: 200px;
-}
-
 img {
     width:100%;
     height:100%;
-}
-
-#title{
-    margin-bottom:0;
 }
 
 #main{
@@ -24,11 +8,11 @@ img {
     direction:rtl;
 }
 
-#footer{
-    margin-bottom:0;
+#updateButton {
+    margin: 20px 0;
 }
 
-div.scroll {
-    overflow: auto;
-  }
-
+.profileImage img{
+    width: 640px;
+    height: 480px;
+}

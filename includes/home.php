@@ -1,6 +1,10 @@
 <?php
  include 'dbconn.php';
  session_start();
+ if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
+  header("location: ../index.php");
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,42 +20,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="../javascript/cookies.js"></script>
   <script src="../javascript/tooltip.js"></script>
+  <script src="../javascript/loader.js"></script>
 </head>
-<body">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Noodle</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">חיפוש</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">שיתוף</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">קהילה</a>
-            </li>  
-            <li class="nav-item">
-                <a class="nav-link" href="#">שיעורים פרטיים</a>
-            </li>   
-            <li class="nav-item">
-                <a class="nav-link" href="#">פרופיל</a>
-            </li>   
-          </ul>
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
-            <button class="btn btn-success" type="submit">חפש</button>
-          </form>
-        </div>  
-      </nav>
+<body>
+<div id="header"></div>
       
 <div class="text-center">
   <h2>שלום <?php echo $_SESSION["name"] ?></h2> 
 </div>
-
 
 <main id="main" class="container">
   <div class="row">
@@ -324,23 +300,7 @@
     </div>
 </main>
 
-<div id="footer" class="jumbotron text-center">
-    <p class="text-center">© Noodle</p>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link" href="#">צור קשר</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">תרומות</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">תרגום</a>
-      </li>  
-      <li class="nav-item">
-          <a class="nav-link" href="about.html">אודות</a>
-        </li>   
-    </ul>
-</div>
+<div id="footer"></div> 
 
 </body>
 </html>
