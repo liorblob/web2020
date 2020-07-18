@@ -1,3 +1,13 @@
+<?php
+  include 'dbconn.php';
+  session_start();
+  if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
+    header("location: ../index.php");
+    exit;
+  }
+
+  $id = $_SESSION["id"];
+?>
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
@@ -31,13 +41,27 @@
   <div class="row">
     <div class="col-sm-12">
       <h2 class="pt-4">הגדרות פרופיל</h2>
-      <p><strong>שם משתמש: </strong>Israel1991</p>
-      <p><strong>כתובת אימייל: </strong>Israel1991@gmail.com</p>
-      <p><strong>שם פרטי: </strong> ישראל</p>
-      <p><strong>שם משפחה: </strong>ישראלי</p>
-      <p><strong>תמונת פרופיל: </strong></p>
-      <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו</p>
-      <button id="updateButton" class="btn btn-primary" value="">עדכן פרטי פרופיל</button>
+      <?php
+          // Check connection
+          if ($conn->connect_error) {
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
+          }
+          else { 
+            $id = $_SESSION["id"];
+
+            $sql = "SELECT username, u.name as uname, email, i.name as iname FROM users AS u, institutions AS i WHERE u.id = $id AND i.id = u.inst_id";
+            $result = $conn->query($sql);
+            
+            if ($result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                echo "<p><strong>שם משתמש: </strong>".$row["username"]."</p>";
+                echo "<p><strong>כתובת אימייל: </strong>".$row["email"]."</p>";
+                echo "<p><strong>שם: </strong>".$row["uname"]."</p>";
+                echo "<p><strong>מוסד לימודים: </strong>".$row["iname"]."</p>";
+            } 
+          }
+        ?>  
+      <button id="updateButton" class="btn btn-primary">עדכן פרטי פרופיל</button>
       <div class="backdrop">
         <div id="popdiv" class="container-sm">
           <nav class="navbar navbar-dark bg-primary" id="fednav">
@@ -49,12 +73,20 @@
               <input id="email" name="email" type="email" class="form-control" placeholder="כתובת אימייל" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
+              <label for="UsernameInput">שם משתמש</label>
+              <input id="username" name="username" type="text" class="form-control" placeholder="שם משתמש" aria-describedby="sizing-addon1" required>
+            </div>
+            <div class="form-group">
+              <label for="UsernameInput">סיסמה</label>
+              <input id="password" name="password" type="password" class="form-control" placeholder="סיסמה" aria-describedby="sizing-addon1" required>
+            </div>
+            <div class="form-group">
               <label for="FirstNameInput">שם פרטי</label>
               <input id="firstname" name="firstname" type="text" class="form-control" placeholder="שם פרטי" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
               <label for="LastNameInput">שם משפחה</label>
-              <input id="email" name ="lastname" type="text" class="form-control" placeholder="שם משפחה" aria-describedby="sizing-addon1" required>
+              <input id="lastname" name ="lastname" type="text" class="form-control" placeholder="שם משפחה" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
               <label for="SchoolInput">מוסד לימודים</label>
@@ -67,7 +99,7 @@
               </select>
             </div>
             <input class="btn btn-primary" type="submit" value="עדכן"/>
-            <button type="reset" class="btn btn-primary" id="exitButton">ביטול</button>
+            <input type="reset" class="btn btn-primary" id="exitButton" value="ביטול"/>
           </form>      
         </div>
       </div>
@@ -76,7 +108,7 @@
       <div class="col-sm-3">
         <div class="card">
           <div class="card-body text-center">
-            <img src="../media/profilepicture.jpg">
+            <img src="getImage.php">
           </div>
         </div>
       </div>
