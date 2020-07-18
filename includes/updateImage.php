@@ -29,7 +29,7 @@
 
 <body>
 <script type='text/javascript'>
-   window.location.href = "profile.html"
+   window.location.href = "profile.php"
 </script>
 
 </body>
