@@ -3,6 +3,12 @@ function setCookie(cname, cvalue) {
   d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
   var expires = "expires="+d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  if(cvalue !== ""){
+    window.location.href = "includes/home.php";
+  }
+  else {
+    window.location.href = "../index.php"
+  }
 }
 
 function getCookie(cname) {
@@ -21,10 +27,15 @@ function getCookie(cname) {
 }
 
 function checkUserCookie() {
-  var user = getCookie("username");
-  if (user != "") {
-      document.getElementById("username").innerHTML = "שלום " + user;
-  } else {
-     window.location.href = "../index.php"
+  var cookie = getCookie("user");
+  if(cookie) {
+    user = cookie.split(",");
+    $.post("includes/cookieLogin.php",
+    {
+      id: user[0],
+      name: user[1]
+    }, function(data, status){
+      window.location.href = "includes/home.php";
+    });
   }
 }

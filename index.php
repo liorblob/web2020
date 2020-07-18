@@ -6,11 +6,16 @@
     header("location: includes/home.php");
     exit;
   }
+
+  echo "<script type='text/javascript' src='javascript/cookies.js'></script>";
+  echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>";
+  echo "<script type='text/javascript'>checkUserCookie()</script>";
   
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     
       $username = $_POST['username'];
       $password = $_POST['password'];
+
       if (!$username || !$password){
         exit;
       }
@@ -24,8 +29,13 @@
         $_SESSION["loggedin"] = true;
         $_SESSION["id"] = $row["id"];
         $_SESSION["name"] = $row["name"];
-
-        header("location: includes/home.php");
+        
+        if(isset($_POST['remember'])){
+          echo "<script type='text/javascript'>setCookie('user', '" .$row["id"]. ",". $row["name"]. "')</script>";
+        }
+        else {
+          header("location: includes/home.php");
+        }
       }
     // Close connection
     
@@ -43,6 +53,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascript/cookies.js"></script>
   <script src="javascript/tooltip.js"></script>
   <script src="javascript/loader.js"></script>
 </head>
@@ -71,7 +82,7 @@
         <input type="password" class="form-control" name="password" id="password" placeholder="הכנס סיסמה" required>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="check">
+        <input name="remember" type="checkbox" class="form-check-input" id="check">
         <label class="form-check-label" for="check">זכור אותי</label>
       </div>
       <button type="submit" class="btn btn-primary">כניסה</button>

@@ -10,7 +10,7 @@
  $conn = new mysqli($servername, $username, $password,$dbname);
  // Check connection
  if ($conn->connect_error) {
-    echo "<script type='text/javascript'>alert(' תקלה בהתחברות למסד הנתונים " . $conn->connect_error . "');</script>";
+    echo "<script type='text/javascript'>alert(' תקלה בהתחברות למסד הנתונים');</script>";
     die();
  }
  else {
