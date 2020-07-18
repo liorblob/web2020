@@ -1,0 +1,42 @@
+body {
+    background-color: #f2f2f2;
+     direction: rtl;
+}
+
+nav[id="mainnav"] {
+    direction: rtl;
+}
+
+nav form {
+    padding-right: 200px;
+}
+
+
+a[id="active"]{ 
+    background-color: lightskyblue; 
+}
+
+.container-sm{
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-right:50px;
+    padding-left:50px;
+    
+}
+
+form[id="serform"]{
+    direction: rtl;
+    margin-right:60px;
+    margin-left:60px;
+}
+
+button[id="subid"]
+{
+    margin-right:100px;
+    margin-top:25px;
+}
+
+
+
+
+

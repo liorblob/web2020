@@ -1,0 +1,53 @@
+                                body {
+                                    background-color: #f2f2f2;
+                                    direction: rtl;
+                                }
+                                
+                                nav {
+                                    direction: rtl;
+                                }
+                                
+                                nav form {
+                                    padding-right: 200px;
+                                }
+                                
+                                img {
+                                    margin-top: 10%;
+                                    height: 80%;
+                                    width: 100%;
+                                    object-fit: contain;
+                                    position: relative;
+                                }
+                                
+                                button[id="subid"] {
+                                    text-align: center;
+                                    display: block;
+                                    margin: 0 auto;
+                                }
+                                
+                                a[id="active"] {
+                                    animation-name: stretch;
+                                    animation-duration: 1s;
+                                    animation-timing-function: ease-out;
+                                    animation-delay: 0;
+                                    animation-direction: alternate;
+                                    animation-iteration-count: 3;
+                                    animation-fill-mode: none;
+                                    animation-play-state: running;
+                                    background-color: cornflowerblue;
+                                }
+                                
+                                @keyframes stretch {
+                                    0% {
+                                        transform: scale(.5);
+                                        background-color: blue;
+                                        border-radius: 100%;
+                                    }
+                                    50% {
+                                        background-color: cornflowerblue;
+                                    }
+                                    100% {
+                                        transform: scale(1.3);
+                                        background-color: lightseagreen;
+                                    }
+                                }

@@ -1,0 +1,36 @@
+body {
+    background-color: #f2f2f2;
+}
+
+nav {
+    direction: rtl;
+}
+
+nav form {
+    padding-right: 200px;
+}
+
+
+.profileImage img {
+    width:250px;
+    height:200px;
+}
+
+
+#title{
+    margin-bottom:0;
+}
+
+#main{
+    margin-top:30px;
+    direction:rtl;
+}
+
+#footer{
+    margin-bottom:0;
+}
+
+form img {
+    width: 250px;
+    height: 60px;
+}

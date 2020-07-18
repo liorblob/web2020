@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us page</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="..\css\ContactUs.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function validationTextInput() {
+            var val;
+            val = document.getElementById('name').value;
+            if ((val == "") || (val == undefined)) {
+                alert('אנא הזן שם .');
+
+            }
+
+            val = document.getElementById('Email').value;
+            if ((val == "") || (val == undefined)) {
+                alert('אנא הזן אימייל.');
+
+            }
+
+            val = document.getElementById('Comments').value;
+            if ((val == "") || (val == undefined)) {
+                alert('אנא הזן נושא פנייה');
+
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Noodle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a id="active" class="nav-link active" href="#">חיפוש</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">שיתוף</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">קהילה</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">שיעורים פרטיים</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
+                <button class="btn btn-success" type="submit">חפש</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <main>
+        <div class="row no-gutters">
+            <div class="col-sm-8">
+                <h2>השארת פרטים ליצירת קשר</h2>
+                <form class="form-group">
+
+                    <div class="form-group col-sm">
+                        <label for="Name">שם</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="PhoneNumber">מספר טלפון</label>
+                        <input name="PhoneNumber" id="PhoneNumber" type="text" class="form-control" value="" />
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="FromEmailAddress">אימייל</label>
+                        <input name="FromEmailAddress" id="Email" type="email" class="form-control" value="" />
+                    </div>
+                    <div class="form-group col-sm">
+                        <label for="Comments">תגובה</label>
+                        <textarea class="form-control" name="Comments" id="Comments" class="form-control" id="exampleFormControlTextarea1" rows="7" value=""></textarea>
+                    </div>
+                    <button id="subid" class="btn btn-primary" type="submit" onclick="validationTextInput()">שלח</button>
+                </form>
+
+            </div>
+
+            <div class="col-sm-4">
+                <img id="imgtest" src="..\media/conus.jpeg">
+            </div>
+        </div>
+    </main>
+	
+    <div id="footer" class="jumbotron text-center">
+        <p class="text-center">© Noodle</p>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">צור קשר</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">תרומות</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">תרגום</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">אודות</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
