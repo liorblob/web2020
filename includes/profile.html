@@ -3,37 +3,30 @@
   <title>Noodle</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
   <link rel="stylesheet" type="text/css" href="../css/profile.css">
   <link rel="stylesheet" type="text/css" href="../css/feedback2.css">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="../javascript/loader.js"></script>
+  <script src="../javascript/validateProfile.js"></script>
 
-  
   <script>
     $(document).ready(function() {
-      $("#but1").click(function() {
+      $("#updateButton").click(function() {
         $(".backdrop").fadeTo(200, 1);
       });
-      $("#but2").click(function() {
+      $("#exitButton").click(function() {
           $(".backdrop").fadeOut(200);
       });
       
     });
 </script>
-<script>
-  $(function(){
-    $("#header").load("header.html"); 
-    $("#footer").load("footer.html"); 
-    });
-</script>
 </head>
 <body>
 <div id="header"></div>
-<div class="text-center">
-  <h2 class="pt-4">שלום ישראל ישראלי</h2> 
-</div>
 <div id="main" class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -43,89 +36,62 @@
       <p><strong>שם פרטי: </strong> ישראל</p>
       <p><strong>שם משפחה: </strong>ישראלי</p>
       <p><strong>תמונת פרופיל: </strong></p>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img src="../media/profilepicture.jpg">
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <button id="but1" class="btn btn-primary" value="">עדכן פרטי פרופיל</button>
+      <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו</p>
+      <button id="updateButton" class="btn btn-primary" value="">עדכן פרטי פרופיל</button>
       <div class="backdrop">
         <div id="popdiv" class="container-sm">
           <nav class="navbar navbar-dark bg-primary" id="fednav">
             <a class="navbar-brand" href="#">עדכון פרטי פרופיל</a>
           </nav>
-          <form id="fedform">
+          <form id="fedform" method="post" action="updateProfile.php" onsubmit="return validateForm()">
             <div class="form-group">
               <label for="EmailInput">כתובת אימייל</label>
-              <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required>
+              <input id="email" name="email" type="email" class="form-control" placeholder="כתובת אימייל" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
               <label for="FirstNameInput">שם פרטי</label>
-              <input type="text" class="form-control" placeholder="FirstName" aria-describedby="sizing-addon1" required>
+              <input id="firstname" name="firstname" type="text" class="form-control" placeholder="שם פרטי" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
               <label for="LastNameInput">שם משפחה</label>
-              <input type="text" class="form-control" placeholder="LastName" aria-describedby="sizing-addon1" required>
+              <input id="email" name ="lastname" type="text" class="form-control" placeholder="שם משפחה" aria-describedby="sizing-addon1" required>
             </div>
             <div class="form-group">
-              <label for="ProfilePictureInput">עדכון תמונת פרופיל</label>
-              <div class="profileImage"></div>
-                <input id="fileUpload" type="file" required/>
-              <div id="image-holder"></div>
-              <script src="../javascript/fileUploader.js"></script>
+              <label for="SchoolInput">מוסד לימודים</label>
+              <select id="school" name="school" class="form-control" required>
+                <option  value="" disabled selected>בחר/י מוסד לימוד</option>
+                <option>המכללה האקדמית של תל אביב יפו</option>
+                <option>אוניברסיטת תל אביב</option>
+                <option>האוניברסיטה העברית</option>
+                <option>הטכניון</option>
+              </select>
             </div>
-            <button id="but2" class="btn btn-primary" type="submit">עדכן</button>
-          </form>
+            <input class="btn btn-primary" type="submit" value="עדכן"/>
+            <button type="reset" class="btn btn-primary" id="exitButton">ביטול</button>
+          </form>      
         </div>
       </div>
     </div>
-    <div class="col-sm-12">
-      <h2 class="pt-4">הגדרות לימוד</h2>
-      <p><strong>מוסד לימודים: </strong> האקדמית תל אביב-יפו</p>
-      <p><strong>הקורסים שלי: </strong></p>
-      <div class="scroll">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>קוד קורס</th>
-              <th>תחום</th>
-              <th>קורס</th>
-              <th>מרצה</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1698456</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>רון בראון</td>
-            </tr>
-            <tr>
-              <td>7798456</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה דיסקרטית</td>
-              <td>רון בראון</td>
-            </tr>
-            <tr>
-              <td>4887648</td>
-              <td>כלכלה</td>
-              <td>מאקרו כלכלה</td>
-              <td>דניאל כהן</td>
-            </tr>
-            <tr>
-              <td>4887646</td>
-              <td>פילוסופיה</td>
-              <td>לוגיקה א'</td>
-              <td>אסף טל</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <img src="../media/profilepicture.jpg">
+          </div>
+        </div>
       </div>
+      <form class="profileImage" name="formImage" enctype="multipart/form-data" action="updateImage.php" method="post">
+        <div class="form-group">
+          <label for="ProfilePictureInput">עדכון תמונת פרופיל</label>
+          <div></div>
+            <input name="image" id="fileUpload" type="file" required/>
+          <div id="image-holder"></div>
+          <script src="../javascript/fileUploader.js"></script>
+        </div>
+        <input class="btn btn-primary" type="submit" value="עדכן"/>
+      </form>
+    </div>
+    <div class="col-sm-12">
       <h2 class="pt-4">ההעלאות שלי</h2>
       <div class="scroll">
         <table class="table table-striped">
@@ -170,12 +136,6 @@
             </tr>
             <tr>
               <td><a href="contentUpload.html" class="card-link">העלה קובץ</a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
             </tr>
           </tbody>
         </table>

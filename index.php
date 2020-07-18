@@ -20,7 +20,6 @@
       if (!$result || $result->num_rows == 0) {
         echo "<script type='text/javascript'>alert('המשתמש לא נמצא');</script>";
       } else {
-        echo "<script type='text/javascript'>alert('המשתמש נמצא');</script>";
         $row = $result->fetch_assoc();
         $_SESSION["loggedin"] = true;
         $_SESSION["id"] = $row["id"];
@@ -45,34 +44,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="javascript/tooltip.js"></script>
+  <script src="javascript/loader.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Noodle</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">חיפוש</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">שיתוף</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">קהילה</a>
-            </li>  
-            <li class="nav-item">
-                <a class="nav-link" href="#">שיעורים פרטיים</a>
-              </li>   
-          </ul>
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="חיפוש...">
-            <button class="btn btn-success" type="submit">חפש</button>
-          </form>
-        </div>  
-      </nav>
 
 <div id="main" class="container"></div>
 
@@ -80,8 +54,7 @@
   <h2 class="pt-4">כניסה למערכת</h2> 
 </div>
 
-<div id="main" class="container">
-  <div class="col-sm-12">
+<main id="main" class="container">
     <h2 class="pt-4">התחברות באמצעות משתמש קיים</h2>
 
     <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="media/googleLogin.png"></a>
@@ -103,28 +76,14 @@
       </div>
       <button type="submit" class="btn btn-primary">כניסה</button>
     </form>
+</main>      
 
-    <h3 class="pt-4">אין לך עדיין משתמש?</h3> <p><strong><a href="signup.html" class="card-link">הירשם למערכת</a></strong></p> 
-
-  </div>
-</div>       
-<div id="footer" class="jumbotron text-center">
-  <p class="text-center">© Noodle</p>
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link" href="#">צור קשר</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">תרומות</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">תרגום</a>
-    </li>  
-    <li class="nav-item">
-        <a class="nav-link" href="#">אודות</a>
-      </li>   
-  </ul>
+<div id="indexFooter">
+  <h3 class="pt-4">אין לך עדיין משתמש?</h3> 
+  <p><strong><a href="includes/signup.html" class="card-link">הירשם למערכת</a></strong></p> 
+  <a class="title" href="includes/about.html">© Noodle</a>
 </div>
 
 </body>
+
 </html>

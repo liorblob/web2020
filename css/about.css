@@ -12,3 +12,7 @@ video {
     text-align: center;
     direction: rtl;
 }
+
+.aboutTitle {
+    color: black;
+}
