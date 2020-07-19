@@ -1,3 +1,5 @@
+
+
 #popdiv {
   direction: rtl;
   background-color: #f2f2f2;
@@ -77,8 +79,6 @@ form[id="fedform"]{
 a{
     color: white;
 }
-
-
 
 button[type="submit"]{
     text-align: center;

@@ -1,8 +1,8 @@
 <?php
  $servername = "localhost:3306";
- $username = "dbuser";
- $password = "123456";
- $dbname="noodle";
+ $username = 'root';
+ $password = '';
+ $dbname="testdb";
 
  error_reporting(E_ALL ^ E_WARNING);
 
@@ -10,7 +10,7 @@
  $conn = new mysqli($servername, $username, $password,$dbname);
  // Check connection
  if ($conn->connect_error) {
-    echo "<script type='text/javascript'>alert(' תקלה בהתחברות למסד הנתונים');</script>";
+    echo "<script type='text/javascript'>alert('תקלה בהתחברות למסד הנתונים');</script>";
     die();
  }
  else {
