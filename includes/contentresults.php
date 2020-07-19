@@ -4,10 +4,11 @@
 ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html>
 
     <head>
-        <meta charset="utf-8">
+    <title>Noodle</title>
+    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>content results page</title>
         <!-- Bootstrap -->
@@ -64,28 +65,8 @@
                              } 
                              else { 
                                  
-                               /*  
-							   future post options from form 
-                                $InputSchool = $_POST["InputSchool"];
-                               $inputtitle=$_POST["inputtitle"]; 
-                                  $inputfromdate=$_POST["inputfromdate"];
-                                  $inputtodate=$_POST["inputtodate"];
-                                   $formControlRange=$_POST["formControlRange"];
-                                  */
                                   $InputCourse=$_POST["InputCourse"]; 
                                  
-                    /*    
-					    Other sql query options
-                        $sql = "SELECT  materials.name, materials.file_type, courses.name , institutions.name ,materials.date,rating
-                            FROM ((materials
-                            INNER JOIN courses ON courses.id= materials.course_id) 
-                            INNER JOIN institutions ON courses.inst_id= institutions.id)
-                            WHERE ( institutions.name = '$InputSchool' AND courses.name LIKE '$inputtitle' AND materials.date >= '$inputfromdate' AND materials.date <= '$inputtodate' AND courses.name = '$InputCourse')";
-
-                             $sql =    "SELECT materials.name, materials.file_type, courses.name , institutions.name ,materials.date,materials.rating 
-                      FROM ((materials INNER JOIN courses ON courses.id= materials.course_id) INNER JOIN institutions ON courses.inst_id= institutions.id) 
-                      WHERE ( institutions.name = '$InputSchool' AND courses.name = '$InputCourse' AND materials.rating >= '$formControlRange')";
-                       */
                       $sql = "SELECT materials.name AS mn, materials.file_type AS mft, courses.name AS cn , institutions.name AS inn ,materials.date AS md ,materials.rating AS mr
                       FROM ((materials INNER JOIN courses ON courses.id= materials.course_id) INNER JOIN institutions ON courses.inst_id= institutions.id) 
                       WHERE ( courses.name = '$InputCourse' )";
