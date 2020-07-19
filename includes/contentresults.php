@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="..\css\feedback.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="../javascript/loader.js"></script>
         <script src="../javascript/contentresults.js"></script>
 
@@ -90,7 +91,7 @@
                             <td>'.$row["md"].'</td>
                             <td>'.$row["mr"].'</td>
                             <td>
-                                  <button id="but1" class="btn btn-link" value="" >דרג</button>
+                            <button onclick="torate()" class="btn btn-link" value="" >דרג</button>
                             </td>
 
                         </tr>';
@@ -119,7 +120,7 @@
                     <a class="navbar-brand" href="#">הזנת משוב</a>
                 </nav>
 
-                <form id="fedform">
+                <form id="fedform" action="home.php">
                     <div class="form-group">
                         <label for="formGroupExampleInput">שם משתמש</label>
                         <input id="Username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" required>
@@ -154,9 +155,7 @@
                     </small>
                     </div>
 
-                    <button id="sumbit_btn" class="btn btn-primary" type="submit" onsubmit="enablebut()">שלח</button>
-
-
+                    <input id="sumbit_btn" class="btn btn-primary" type="submit" value="שלח"/>
                 </form>
             </div>
         </div>
