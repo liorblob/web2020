@@ -1,0 +1,18 @@
+img {
+    width:100%;
+    height:100%;
+}
+
+#main{
+    margin-top:30px;
+    direction:rtl;
+}
+
+#updateButton {
+    margin: 20px 0;
+}
+
+.profileImage img{
+    width: 300px;
+    height: 200px;
+}

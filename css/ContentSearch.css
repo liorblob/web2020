@@ -1,0 +1,25 @@
+body {
+    background-color: #f2f2f2;
+    direction: rtl;
+}
+
+nav {
+    direction: rtl;
+}
+
+nav form {
+    padding-right: 200px;
+}
+
+.container-sm {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+button[id="subid"] {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}

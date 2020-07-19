@@ -1,0 +1,28 @@
+                                body {
+                                    background-color: #f2f2f2;
+                                    direction: rtl;
+                                }
+                                
+                                nav {
+                                    direction: rtl;
+                                }
+                                
+                                nav form {
+                                    padding-right: 200px;
+                                }
+                                
+                                img {
+                                    margin-top: 10%;
+                                    height: 80%;
+                                    width: 100%;
+                                    object-fit: contain;
+                                    position: relative;
+                                }
+                                
+                                button[id="subid"] {
+                                    text-align: center;
+                                    display: block;
+                                    margin: 0 auto;
+                                }
+                                
+                            
