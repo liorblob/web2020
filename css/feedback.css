@@ -82,13 +82,6 @@ a{
     color: white;
 }
 
-
-nav {
-    direction: rtl;
-}
-
-
-
 button[type="submit"]{
     text-align: center;
     display: block;
