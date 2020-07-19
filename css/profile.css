@@ -3,11 +3,6 @@ img {
     height:100%;
 }
 
-#main{
-    margin-top:30px;
-    direction:rtl;
-}
-
 #updateButton {
     margin: 20px 0;
 }
