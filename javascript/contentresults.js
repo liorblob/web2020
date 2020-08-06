@@ -1,15 +1,7 @@
-  function enablebut(id) {
-      $(document.getElementById(id)).removeAttr('hidden');
+  function torate() {
+	$(".backdrop").fadeTo(200, 1);
 
   }
-
-  $(document).ready(function() {
-      $("#but1").click(function() {
-          $(".backdrop").fadeTo(200, 1);
-      });
-
-
-  });
 
   $(function() {
       function ratingEnable() {
