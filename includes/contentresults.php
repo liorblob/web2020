@@ -4,10 +4,11 @@
 ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html>
 
     <head>
-        <meta charset="utf-8">
+    <title>Noodle</title>
+    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>content results page</title>
         <!-- Bootstrap -->
@@ -17,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="..\css\feedback.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="../javascript/loader.js"></script>
         <script src="../javascript/contentresults.js"></script>
 
@@ -64,28 +66,8 @@
                              } 
                              else { 
                                  
-                               /*  
-							   future post options from form 
-                                $InputSchool = $_POST["InputSchool"];
-                               $inputtitle=$_POST["inputtitle"]; 
-                                  $inputfromdate=$_POST["inputfromdate"];
-                                  $inputtodate=$_POST["inputtodate"];
-                                   $formControlRange=$_POST["formControlRange"];
-                                  */
                                   $InputCourse=$_POST["InputCourse"]; 
                                  
-                    /*    
-					    Other sql query options
-                        $sql = "SELECT  materials.name, materials.file_type, courses.name , institutions.name ,materials.date,rating
-                            FROM ((materials
-                            INNER JOIN courses ON courses.id= materials.course_id) 
-                            INNER JOIN institutions ON courses.inst_id= institutions.id)
-                            WHERE ( institutions.name = '$InputSchool' AND courses.name LIKE '$inputtitle' AND materials.date >= '$inputfromdate' AND materials.date <= '$inputtodate' AND courses.name = '$InputCourse')";
-
-                             $sql =    "SELECT materials.name, materials.file_type, courses.name , institutions.name ,materials.date,materials.rating 
-                      FROM ((materials INNER JOIN courses ON courses.id= materials.course_id) INNER JOIN institutions ON courses.inst_id= institutions.id) 
-                      WHERE ( institutions.name = '$InputSchool' AND courses.name = '$InputCourse' AND materials.rating >= '$formControlRange')";
-                       */
                       $sql = "SELECT materials.name AS mn, materials.file_type AS mft, courses.name AS cn , institutions.name AS inn ,materials.date AS md ,materials.rating AS mr
                       FROM ((materials INNER JOIN courses ON courses.id= materials.course_id) INNER JOIN institutions ON courses.inst_id= institutions.id) 
                       WHERE ( courses.name = '$InputCourse' )";
@@ -109,7 +91,7 @@
                             <td>'.$row["md"].'</td>
                             <td>'.$row["mr"].'</td>
                             <td>
-                                  <button id="but1" class="btn btn-link" value="" >דרג</button>
+                            <button onclick="torate()" class="btn btn-link" value="" >דרג</button>
                             </td>
 
                         </tr>';
@@ -138,7 +120,7 @@
                     <a class="navbar-brand" href="#">הזנת משוב</a>
                 </nav>
 
-                <form id="fedform">
+                <form id="fedform" action="home.php">
                     <div class="form-group">
                         <label for="formGroupExampleInput">שם משתמש</label>
                         <input id="Username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" required>
@@ -173,9 +155,7 @@
                     </small>
                     </div>
 
-                    <button id="sumbit_btn" class="btn btn-primary" type="submit" onsubmit="enablebut()">שלח</button>
-
-
+                    <input id="sumbit_btn" class="btn btn-primary" type="submit" value="שלח"/>
                 </form>
             </div>
         </div>
