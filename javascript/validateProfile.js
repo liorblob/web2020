@@ -1,5 +1,6 @@
 function validateForm() {
-    var nonletters = /[\ \-\*\+\!\@\#\$\%\^\(\)\[\]\{\}\,\.\<\>\?\=\_\;\|\/\\\~\`]/;
+    var nonletters = /[\ \-\*\+\!\#\$\%\^\(\)\[\]\{\}\,\.\<\>\?\=\_\;\|\/\\\~\`]/;
+    
 
     var fname=document.forms["fedform"]["firstname"].value;
     var lname=document.forms["fedform"]["lastname"].value;
