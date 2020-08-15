@@ -1,5 +1,5 @@
 function validateForm() {
-    var nonletters = /[\ \-\*\+\!\#\$\%\^\(\)\[\]\{\}\,\.\<\>\?\=\_\;\|\/\\\~\`]/;
+    var nonletters = /[\ \-\*\+\!\#\$\%\^\(\)\[\]\{\}\,\<\>\?\=\;\|\/\\\~\`]/;
     
 
     var fname=document.forms["fedform"]["firstname"].value;
@@ -25,11 +25,6 @@ function validateForm() {
 
     if(lname.match(nonletters)){
         alert("שם המשפחה שהוזן אינו תקין");
-        return false; 
-    }
-
-    if(school.match(nonletters)){
-        alert("מוסד הלימודים שהוזן אינו תקין");
         return false; 
     }
 }
