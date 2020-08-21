@@ -90,6 +90,7 @@
         <h4 class="pt-4">בחירת קובץ</h4>
         <input type="file" class="form-control-file" id="contentInput" name="contentInput" required>
         <br>
+        <script src="../javascript/ContentUploader.js"></script>
         <button type="submit" class="btn btn-primary">העלאה</button> 
         <br><br>
 
