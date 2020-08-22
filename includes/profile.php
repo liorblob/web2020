@@ -124,46 +124,51 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>#</th>
               <th>תאריך</th>
-              <th>תחום</th>
+              <th>מוסד לימודים</th>
               <th>קורס</th>
               <th>כותרת</th>
-              <th>סוג</th>
+              <th>תיאור</th>
+              <th>סוג קובץ</th>
               <th>סטטוס</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>04/03/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>סיכום תרגולים 2020</td>
-              <td>סיכום</td>
-              <td class="bg-success">העלאה אושרה</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>01/04/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>דף נוסחאות 2020</td>
-              <td>סיכום</td>
-              <td class="bg-info">ממתין לאישור</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>07/04/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>מועד א' פתור 29.03.20 - ציון 96</td>
-              <td>מבחן</td>
-              <td class="bg-info">ממתין לאישור</td>
-            </tr>
-            <tr>
-              <td><a href="contentUpload.html" class="card-link">העלה קובץ</a></td>
-            </tr>
+          <?php
+          
+          // Check connection
+          if ($conn->connect_error) {
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
+          }
+          else { 
+            $id = $_SESSION["id"];
+
+            $sql = "SELECT m.date AS material_date, m.id AS material_id, m.name AS material_name, m.description AS material_desc, m.file_type AS material_type, m.status AS material_status,
+            c.name AS course_name, 
+            i.name AS inst_name
+            FROM `materials` AS m, `users` AS u, `courses` AS c, `institutions` AS i 
+            WHERE m.user_id = u.id AND u.id = $id AND m.course_id = c.id AND c.inst_id =i.id";
+
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                    <td>'.$row["material_date"].'</td>
+                    <td>'.$row["inst_name"].'</td>
+                    <td>'.$row["course_name"].'</td>
+                    <td>'.$row["material_name"].'</td>
+                    <td>'.$row["material_desc"].'</td>
+                    <td>'.$row["material_type"].'</td>
+                    <td>'.$row["material_status"].'</td>
+                  </tr>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו העלאות</h4>';
+            }
+          }
+          ?>
           </tbody>
         </table>
       </div>
