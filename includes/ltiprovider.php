@@ -2,7 +2,7 @@
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 1);
 
-require_once '../ims-blti/blti.php';
+require_once 'ims-blti/blti.php';
 $lti = new BLTI("secret", false, false);
 
 session_start();
@@ -13,7 +13,7 @@ header('Content-Type: text/html; charset=utf-8');
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Building Tools With The Learning Tools Operability Specification</title>
+    <title>Noodle LTI</title>
   </head>
    
   <body>
