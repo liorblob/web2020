@@ -16,7 +16,6 @@
     $courseName = explode(" (",$_POST["courseInput"])[0];
     
     $sql = 'SELECT id FROM courses WHERE name = "'.$courseName.'"';
-    echo $sql;
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $course_id = $row["id"];     
@@ -35,7 +34,23 @@
       $conn->error;
       exit();
     }
-    echo "החומר הועלה בהצלחה";
+    echo "<script type='text/javascript'>alert('התוכן הועלה בהצלחה');</script>";
     $conn->close();
   }
 ?>
+
+<!DOCTYPE html>
+<head>
+  <title>Noodle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script type='text/javascript'>
+   window.location.href = "contentUpload.php"
+</script>
+
+</body>
+
+</html>
