@@ -1,15 +1,3 @@
-
-<?php
-  include 'dbconn.php';
-  session_start();
-  if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
-    header("location: ../index.php");
-    exit;
-  }
-
-  $id = $_SESSION["id"];
-?>
-
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
@@ -22,6 +10,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="../javascript/loader.js"></script>
+
+  <?php
+  include "session.php";
+  ?>
+
   <script>
     $(document).ready(function() {
       $('#contentUploadForm').on('submit', function(e){
