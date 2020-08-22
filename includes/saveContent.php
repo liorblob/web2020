@@ -15,6 +15,7 @@
   else {
     $courseName = explode(" (",$_POST["courseInput"])[0];
     
+    
     $sql = 'SELECT id FROM courses WHERE name = "'.$courseName.'"';
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -25,9 +26,13 @@
     $description=$_POST["descriptionInput"];
     $date=$_POST["dateInput"];
     $data=addslashes(file_get_contents($_FILES["contentInput"]['tmp_name'])); 
-  
+    $file_type = end((explode(".", $_FILES["contentInput"]["name"]))); # extra () to prevent notice
 
-    $sql = "INSERT into materials(name,description,date,course_id,data) values ('".$name."','".$description."','".$date."','".$course_id."','".$data."')";
+    $status = "Pending Approval";
+
+    $sql = "INSERT into materials(name,description,date,course_id,data,user_id,status,file_type)
+      values
+      ('".$name."','".$description."','".$date."','".$course_id."','".$data."','".$id."','".$status."','".$file_type."')";
 
     if ($conn->query($sql)==FALSE){
       echo $sql;

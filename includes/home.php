@@ -1,12 +1,3 @@
-<?php
- include 'dbconn.php';
- session_start();
- if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
-  header("location: ../index.php");
-  exit;
-}
-?>
-
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
@@ -20,6 +11,12 @@
   <script src="../javascript/cookies.js"></script>
   <script src="../javascript/tooltip.js"></script>
   <script src="../javascript/loader.js"></script>
+
+  <?php
+  include "session.php";
+  ?>
+
+
 </head>
 <body>
 <div id="header"></div>
