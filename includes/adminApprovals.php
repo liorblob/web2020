@@ -46,8 +46,8 @@
               <th>משתמש</th>
               <th>מוסד לימודים</th>
               <th>קורס</th>
-              <th>שם קובץ</th>
-              <th>תיאור תוכן</th>
+              <th>כותרת</th>
+              <th>תיאור</th>
               <th>סוג קובץ</th>
               <th></th>
               <th></th>
@@ -100,53 +100,6 @@
       </div>
       <h2 class="pt-4">בקשות מורים פרטיים</h2>
       <h2 class="pt-4">בקשות משוב</h2>
-      <div class="scroll">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>תאריך</th>
-              <th>תחום</th>
-              <th>קורס</th>
-              <th>כותרת</th>
-              <th>סוג</th>
-              <th>סטטוס</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>04/03/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>סיכום תרגולים 2020</td>
-              <td>סיכום</td>
-              <td class="bg-success">העלאה אושרה</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>01/04/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>דף נוסחאות 2020</td>
-              <td>סיכום</td>
-              <td class="bg-info">ממתין לאישור</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>07/04/2020</td>
-              <td>מתמטיקה</td>
-              <td>מתמטיקה ב'</td>
-              <td>מועד א' פתור 29.03.20 - ציון 96</td>
-              <td>מבחן</td>
-              <td class="bg-info">ממתין לאישור</td>
-            </tr>
-            <tr>
-              <td><a href="contentUpload.html" class="card-link">העלה קובץ</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div> 
   </div>
 </div>

@@ -26,7 +26,10 @@
     $description=$_POST["descriptionInput"];
     $date=$_POST["dateInput"];
     $data=addslashes(file_get_contents($_FILES["contentInput"]['tmp_name'])); 
-    $file_type = end((explode(".", $_FILES["contentInput"]["name"]))); # extra () to prevent notice
+    
+    $temp_file_type = $_FILES["contentInput"]["name"];
+    $file_type = end((explode(".", $temp_file_type))); # extra () to prevent notice
+
 
     $status = "Pending Approval";
 

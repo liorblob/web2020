@@ -4,13 +4,10 @@ function contentClick(b) {
   var material_id = parseInt(value[1]);
   var status = value[0];
 
-  alert(material_id)
-  alert(status)
-
   $.post("updateStatus.php",
   {
-    material_id,
-    status,
+    material_id: material_id,
+    status: status
   }, function(data, status){
     window.location.href = "adminApprovals.php";
   });
