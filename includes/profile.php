@@ -116,9 +116,9 @@
         <div class="form-group">
           <label for="ProfilePictureInput">עדכון תמונת פרופיל</label>
           <div></div>
-            <input name="image" id="fileUpload" type="file" required/>
+          <input name="image" id="imageUpload" type="file" required/>
           <div id="image-holder"></div>
-          <script src="../javascript/fileUploader.js"></script>
+          <script src="../javascript/imageUploader.js"></script>
         </div>
         <input class="btn btn-primary" type="submit" value="עדכן"/>
       </form>

@@ -18,6 +18,10 @@ nav form {
     padding-left: 50px;
 }
 
+#footer{
+    margin-bottom:0;
+}
+
 form[id="serform"] {
     direction: rtl;
     margin-right: 60px;
