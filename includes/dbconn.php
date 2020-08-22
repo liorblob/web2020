@@ -1,8 +1,8 @@
 <?php
- $servername = "localhost:3306";
- $username = 'root';
- $password = '';
- $dbname="testdb";
+ $servername = "localhost";
+ $username = "isliorbo";
+ $password = "ThuTi?O$e4E";
+ $dbname="isliorbo_noodle";
 
  error_reporting(E_ALL ^ E_WARNING);
 
