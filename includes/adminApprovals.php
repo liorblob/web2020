@@ -7,13 +7,14 @@
   <link rel="stylesheet" type="text/css" href="../css/profile.css">
   <link rel="stylesheet" type="text/css" href="../css/feedback2.css">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="../javascript/validateProfile.js"></script>
 
   <?php
   include "session.php";
   ?>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="../javascript/updateStatus.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -42,12 +43,14 @@
           <thead>
             <tr>
               <th>תאריך</th>
+              <th>משתמש</th>
+              <th>מוסד לימודים</th>
               <th>קורס</th>
               <th>שם קובץ</th>
               <th>תיאור תוכן</th>
               <th>סוג קובץ</th>
-              <th>הורדת קובץ</th>
-              <th>סטטוס</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -61,26 +64,27 @@
           else { 
             $id = $_SESSION["id"];
 
-            $sql = 'SELECT r.id AS request_id, r.description AS request_desc, r.type AS request_type, r.status AS request_status, r.date AS request_date, c.name AS course_name FROM `requests` AS r, `courses` AS c WHERE c.id = r.course_id AND r.user_id ='.$id;
+            $sql = 'SELECT m.date AS material_date, m.id AS material_id, m.name AS material_name, m.description AS material_desc, m.file_type AS material_type,  
+            c.name AS course_name, 
+            i.name AS inst_name,
+            u.name AS user_name
+            FROM `materials` AS m, `users` AS u, `courses` AS c, `institutions` AS i 
+            WHERE m.status = "Pending Approval" AND m.course_id = c.id AND c.inst_id =i.id AND m.user_id = u.id';
             $result = $conn->query($sql);
             
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                  switch ($row["request_status"]) {
-                    case "נענה":
-                      $cell_class = "bg-success";
-                      break;
-                    default:
-                      $cell_class = "bg-info";
-                    }
                     echo '<tr>
-                    <td>'.$row["request_id"].'</td>
-                    <td>'.$row["request_date"].'</td>
-                    <td>'.$row["request_desc"].'</td>
+                    <td>'.$row["material_date"].'</td>
+                    <td>'.$row["user_name"].'</td>
+                    <td>'.$row["inst_name"].'</td>
                     <td>'.$row["course_name"].'</td>
-                    <td>'.$row["request_type"].'</td>
-                    <td class="'.$cell_class.'">'.$row["request_status"].'</td>
+                    <td>'.$row["material_name"].'</td>
+                    <td>'.$row["material_desc"].'</td>
+                    <td>'.$row["material_type"].'</td>
+                    <td><button value="'."Approved_".$row["material_id"].'" onclick=contentClick(this) class="btn btn-primary">אישור</button></td>
+                    <td><button value="'."Declined_".$row["material_id"].'"  onclick=contentClick(this) class="btn btn-primary">דחיה</button></td>
                   </tr>';
                 }
             } else {
