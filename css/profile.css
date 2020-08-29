@@ -11,3 +11,9 @@ img {
     width: 300px;
     height: 200px;
 }
+
+
+.teacherImage img{
+    width:50%;
+    height:50%;
+}
