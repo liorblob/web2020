@@ -1,12 +1,3 @@
-<?php
- include 'dbconn.php';
- session_start();
- if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
-  header("location: ../index.php");
-  exit;
-}
-?>
-
 <!DOCTYPE html>
 <head>
   <title>Noodle</title>
@@ -14,12 +5,17 @@
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/main.css">
   <link rel="stylesheet" type="text/css" href="../css/calendar.css">
+
+  <?php
+  include "session.php";
+  ?>
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="../javascript/cookies.js"></script>
   <script src="../javascript/tooltip.js"></script>
-  <script src="../javascript/loader.js"></script>
+
 </head>
 <body>
 <div id="header"></div>

@@ -21,7 +21,7 @@
         exit;
       }
 
-      $sql = "SELECT id, name FROM users WHERE (username = '$username'  OR email = '$username') AND password = '$password'";
+      $sql = "SELECT id, name, is_admin FROM users WHERE (username = '$username'  OR email = '$username') AND password = '$password'";
       $result = $conn->query($sql);
       if (!$result || $result->num_rows == 0) {
         echo "<script type='text/javascript'>alert('המשתמש לא נמצא');</script>";
@@ -30,7 +30,8 @@
         $_SESSION["loggedin"] = true;
         $_SESSION["id"] = $row["id"];
         $_SESSION["name"] = $row["name"];
-        
+        $_SESSION["is_admin"] = $row["is_admin"];
+
         if(isset($_POST['remember'])){
           echo "<script type='text/javascript'>setCookie('user', '" .$row["id"]. ",". $row["name"]. "')</script>";
         }
@@ -38,6 +39,8 @@
           header("location: includes/home.php");
         }
       }
+
+      
     // Close connection
     
     $conn->close();
