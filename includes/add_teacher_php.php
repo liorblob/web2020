@@ -12,7 +12,7 @@
 $sql2="INSERT INTO teachers (teacher_id,subject_main,lesson_time,lesson_price,background,telephone) VALUES (".$teacher_id.",'".$subject_main."',".$lesson_time.",".$lesson_price.",'".$background."','".$telephone."');";
 $conn->query($sql2);
 
-header( 'Location: http://isliorbo.mtacloud.co.il/noodle/includes/profile.php' ) ;
+header( 'Location: profile.php' ) ;
 
 
 $conn->close();
