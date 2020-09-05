@@ -1,0 +1,40 @@
+<?php
+    include 'dbconn.php';
+    session_start();
+    if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
+        header("location: ../index.php");
+        exit;
+    }
+
+    $id = $_SESSION["id"];
+
+    $material_id= $_POST["ratingValue"];
+    $nickname = $_POST["nickname"];
+    $contentRating = $_POST["contentRating"];
+    $comment = $_POST["comment"];
+    $status = "Pending Approval";
+
+
+    $sql = "INSERT INTO materials_rating (material_id,date,user_id,user_nickname,user_comment,user_rating,status)
+    VALUES ('$material_id',now(),'$id','$nickname','$comment','$contentRating','$status')";
+   
+   $result = $conn->query($sql);
+
+
+   $conn->close();
+?>
+
+<!DOCTYPE html>
+<head>
+  <title>Noodle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script type='text/javascript'>
+   window.location.href = "contentresults.php"
+</script>
+
+</body>
+</html>

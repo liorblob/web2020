@@ -87,7 +87,7 @@
               <label for="SchoolInput">מוסד לימודים</label>
               <select id="school" name="school" class="form-control" required>
                 <option  value="" disabled selected>בחר/י מוסד לימוד</option>
-                <option>המכללה האקדמית של תל אביב יפו</option>
+                <option>המכללה האקדמית תל אביב יפו</option>
                 <option>אוניברסיטת תל אביב</option>
                 <option>האוניברסיטה העברית</option>
                 <option>הטכניון</option>
@@ -142,8 +142,8 @@
           }
           else { 
             $id = $_SESSION["id"];
-
-            $sql = "SELECT m.date AS material_date, m.id AS material_id, m.name AS material_name, m.description AS material_desc, m.file_type AS material_type, m.status AS material_status,
+            
+            $sql = "SELECT DATE_FORMAT(m.date, '%d/%m/%Y') AS material_date, m.id AS material_id, m.name AS material_name, m.description AS material_desc, UPPER(m.file_type) AS material_type, m.status AS material_status,
             c.name AS course_name, 
             i.name AS inst_name
             FROM `materials` AS m, `users` AS u, `courses` AS c, `institutions` AS i 

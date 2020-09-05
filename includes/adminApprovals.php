@@ -34,10 +34,6 @@
   <div class="row">
     <div class="col-sm-12">
       <h2 class="pt-4">בקשות העלאת תכנים</h2>
-
-
-
-
       <div class="scroll">
         <table class="table table-striped">
           <thead>
@@ -92,14 +88,71 @@
             }
           }
           ?>
+          </tbody>
+        </table>
+      </div>
+      <h2 class="pt-4">בקשות מורים פרטיים</h2>
+      <h2 class="pt-4">בקשות משוב</h2>
+      <div class="scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>תאריך</th>
+              <th>משתמש</th>
+              <th>שם זיהוי</th>
+              <th>כותרת תוכן</th>
+              <th>דירוג</th>
+              <th>תגובה</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <?php
+          
+          // Check connection
+          if ($conn->connect_error) {
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
+          }
+          else { 
+            $id = $_SESSION["id"];
+
+
+            $sql = 'SELECT mr.id AS rating_id, mr.material_id as material_id, mr.date AS material_date,mr.user_id AS user_id, mr.user_nickname AS nickname,
+            mr.user_comment AS comment, mr.user_rating AS rating,
+            m.name AS material_name,
+            u.name AS user_name
+            FROM materials_rating AS mr, materials AS m, users AS u
+            WHERE mr.status = "Pending Approval" AND mr.user_id = u.id AND mr.material_id = m.id';
+
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                    <td>'.$row["material_date"].'</td>
+                    <td>'.$row["user_name"].'</td>
+                    <td>'.$row["nickname"].'</td>
+                    <td>'.$row["material_name"].'</td>
+                    <td>'.$row["rating"].'</td>
+                    <td>'.$row["comment"].'</td>
+                    <td><button value="'."Approved_".$row["rating_id"].'" onclick=ratingClick(this) class="btn btn-primary">אישור</button></td>
+                    <td><button value="'."Declined_".$row["rating_id"].'"  onclick=ratingClick(this) class="btn btn-primary">דחיה</button></td>
+                  </tr>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
+            }
+          }
+          ?>
 
 
 
           </tbody>
         </table>
       </div>
-      <h2 class="pt-4">בקשות מורים פרטיים</h2>
-      <h2 class="pt-4">בקשות משוב</h2>
     </div> 
   </div>
 </div>
