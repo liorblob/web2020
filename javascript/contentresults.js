@@ -18,3 +18,10 @@ function rateClick(b) {
 }
 
 
+
+function viewRatings() {
+    ratingValue = $("#ratingValue").val();
+    window.open("contentRatings.php?id="+ratingValue);
+}
+
+

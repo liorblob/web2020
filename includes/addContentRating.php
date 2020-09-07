@@ -8,21 +8,22 @@
 
     $id = $_SESSION["id"];
 
-    $material_id= $_POST["ratingValue"];
+    $rating_type = "material";
+    $material_id = $_POST["ratingValue"];
     $nickname = $_POST["nickname"];
     $contentRating = $_POST["contentRating"];
     $comment = $_POST["comment"];
     $status = "Pending Approval";
 
 
-    $sql = "INSERT INTO materials_rating (material_id,date,user_id,user_nickname,user_comment,user_rating,status)
-    VALUES ('$material_id',now(),'$id','$nickname','$comment','$contentRating','$status')";
-   
+    $sql = "INSERT INTO materials_rating (rating_type,material_id,date,user_id,user_nickname,user_comment,user_rating,status)
+    VALUES ('$rating_type','$material_id',now(),'$id','$nickname','$comment','$contentRating','$status')";
    $result = $conn->query($sql);
 
 
    $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <head>
