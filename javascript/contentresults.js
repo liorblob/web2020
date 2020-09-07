@@ -11,6 +11,12 @@ $(function() {
     ratingEnable();
 });
 
+function downloadClick(b) {
+
+    var value = b.value; 
+    window.location.href = "contentDownload.php?id=" + value;
+  
+  }
 
 function rateClick(b) {
     $("#ratingValue").val(b.value);

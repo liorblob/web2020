@@ -187,7 +187,7 @@
                                 echo '<tr>
                                 <th scope="row">'.$row["material_id"].'</th>
                                 <td>
-                                    <button type="button" class="btn btn-link"  value="Link" id="myButton">הורדה</button>
+                                    <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
                                 </td>
                                 <td>
                                  <!--
@@ -207,6 +207,8 @@
                                 </tr>';
                                 $linenum++;
                             }
+                        } else {
+                            echo '<h2>לא נמצאו תוצאות</h2>';
                         }
 
                     ?>       

@@ -26,16 +26,16 @@
     $description=$_POST["descriptionInput"];
     $date=$_POST["dateInput"];
     $data=addslashes(file_get_contents($_FILES["contentInput"]['tmp_name'])); 
-    
+    $file_size=$_FILES["contentInput"]['size'];
     $temp_file_type = $_FILES["contentInput"]["name"];
     $file_type = end((explode(".", $temp_file_type))); # extra () to prevent notice
 
 
     $status = "Pending Approval";
 
-    $sql = "INSERT into materials(name,description,date,course_id,data,user_id,status,file_type)
+    $sql = "INSERT into materials(name,description,date,course_id,data,user_id,status,file_type,file_size)
       values
-      ('".$name."','".$description."','".$date."','".$course_id."','".$data."','".$id."','".$status."','".$file_type."')";
+      ('".$name."','".$description."','".$date."','".$course_id."','".$data."','".$id."','".$status."','".$file_type."','".$file_size."')";
 
     if ($conn->query($sql)==FALSE){
       echo $sql;
