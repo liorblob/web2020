@@ -8,16 +8,18 @@
 
     $id = $_SESSION["id"];
 
-    $rating_type = "material";
-    $material_id = $_POST["ratingValue"];
-    $nickname = $_POST["nickname"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $email = $_POST["email"];
+    $birthDate = $_POST["birthDate"];
     $contentRating = $_POST["contentRating"];
-    $comment = $_POST["comment"];
-    $status = "Pending Approval";
 
+    $name = $firstname . ' ' . $lastname;
 
-    $sql = "INSERT INTO materials_rating (rating_type,material_id,date,user_id,user_nickname,user_comment,user_rating,status)
-    VALUES ('$rating_type','$material_id',now(),'$id','$nickname','$comment','$contentRating','$status')";
+    $sql = "INSERT INTO users (id,username,password,name,email,is_admin)
+    VALUES (7,'$username','$password','$name','$email',0)";
    $result = $conn->query($sql);
 
 

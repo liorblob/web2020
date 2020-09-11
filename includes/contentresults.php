@@ -114,7 +114,7 @@
                         <th scope="col">מוסד</th>
                         <th scope="col">עדכניות</th>
                         <th scope="col">דירוג ממוצע</th>
-                        <th scope="col">דרג קורס זה</th>
+                        <th scope="col">דרג חומר זה</th>
                     </tr>
                 </thead>
 
@@ -155,6 +155,7 @@
                         (SELECT material_id, ROUND(AVG(user_rating),1) AS rating
 						FROM materials_rating
                         WHERE status = 'Approved'
+                        AND rating_type = 'material'
 						GROUP BY material_id) AS materials_rating
                         ON materials.id = materials_rating.material_id
                         WHERE institutions.name LIKE '%".$InputSchool."%'
@@ -173,6 +174,7 @@
                         (SELECT material_id, ROUND(AVG(user_rating),1) AS rating
 						FROM materials_rating
 						WHERE status = 'Approved'
+                        AND rating_type = 'material'
 						GROUP BY material_id) AS materials_rating
                         ON materials.id = materials_rating.material_id
                         GROUP BY materials.id
@@ -187,7 +189,7 @@
                                 echo '<tr>
                                 <th scope="row">'.$row["material_id"].'</th>
                                 <td>
-                                    <button type="button" class="btn btn-link"  value="Link" id="myButton">הורדה</button>
+                                    <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
                                 </td>
                                 <td>
                                  <!--
@@ -207,6 +209,8 @@
                                 </tr>';
                                 $linenum++;
                             }
+                        } else {
+                            echo '<h2>לא נמצאו תוצאות</h2>';
                         }
 
                     ?>       
@@ -218,13 +222,14 @@
 
     <div class="backdrop">
         <div id="popdiv" class="container-sm">
+
             <nav class="navbar navbar-dark bg-primary" id="fednav">
                 <a class="navbar-brand" href="#">הזנת משוב</a>
             </nav>
             <form id="fedform" method="post" action="addContentRating.php" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label for="formGroupExampleInput">שם הזדהות</label>
-                    <input id="nickname" name="nickname" type="text" class="form-control" placeholder="הזן שם להזדהות" aria-describedby="sizing-addon1">
+                    <input id="nickname" name="nickname" type="text" class="form-control" placeholder="הזן שם להזדהות" aria-describedby="sizing-addon1" required>
                     <small id="UsernameHelpBlock" class="form-text text-muted">
                     הינך יכול להזדהות בשמך, שם המשתמש שלך או לבחור שם אנונימי לבחירתך
                     </small>
@@ -243,7 +248,6 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <p></p>
                 </div>
 
                 <div class="form-group">
@@ -255,6 +259,12 @@
                 <input id="sumbit_btn" class="btn btn-primary" type="submit" value="אישור"/>
                 <input id="exitButton" class="btn btn-primary"  type="reset" value="ביטול"/>
             </form>
+
+                <p></p>
+                <label for="formGroupExampleInput">לצפיה בכלל התגובות לחומר לימודי זה לחץ על הכפתור הבא:</label>
+
+                <button class="btn btn-primary" onclick="viewRatings()">צפה בדירוגי גולשים</button>
+
         </div>
     </div>
 
