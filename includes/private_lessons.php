@@ -15,8 +15,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="../javascript/loader.js"></script>
-  <script src="../javascript/validateProfile.js"></script>
+  <script src="../javascript/teacherLookup.js"></script>
 
 </head>
 <body>
@@ -41,19 +40,19 @@
 
           if($_SERVER["REQUEST_METHOD"] == "POST"){
             $subject_main = $_POST["subject_main"];
-            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.grade)/COUNT(r.grade),1) as avg_grade
+            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.user_rating)/COUNT(r.user_rating),1) as avg_grade
             FROM teachers as t
             LEFT JOIN users as u ON t.teacher_id=u.id
-            LEFT JOIN teachers_reputation as r ON r.teacher_id = t.teacher_id
+            LEFT JOIN materials_rating as r ON r.teacher_id = t.teacher_id
             WHERE t.subject_main LIKE '%".$subject_main."%'
             GROUP BY t.teacher_id;"; 
 
           }
           else{
-            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.grade)/COUNT(r.grade),1) as avg_grade
+            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.user_rating)/COUNT(r.user_rating),1) as avg_grade
             FROM teachers as t
             LEFT JOIN users as u ON t.teacher_id=u.id
-            LEFT JOIN teachers_reputation as r ON r.teacher_id = t.teacher_id
+            LEFT JOIN materials_rating as r ON r.teacher_id = t.teacher_id
             GROUP BY t.teacher_id;";  
           }
 
@@ -71,10 +70,14 @@
                 <th>משך שיעור</th>
                 <th>מחיר שיעור</th>
                 <th>דירוג ממוצע</th>
+                <th></th>
               </tr>";
               // output data of each row
           
               while($row = $result->fetch_assoc()) {
+                  
+                  $_SESSION["teacher_id"] = $row["teacher_id"];
+                  
                   echo "<tr>
                   <td>
                     <div class='teacherImage'>
@@ -87,6 +90,9 @@
                   <td>".$row["lesson_time"]."</td>
                   <td>".$row["lesson_price"]."</td>
                   <td>".$row["avg_grade"]."</td>
+                  <td>
+                  <button value=".$row["teacher_id"]." onclick=idTeacherClick(this) class='btn btn-primary'> פרטים נוספים </button>
+                  </td>
                   </tr>";
 
               }
