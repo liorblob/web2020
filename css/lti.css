@@ -1,0 +1,28 @@
+.card-img-bottom {
+    width: 100px;
+    height: 100px;
+    margin-top: 2px;
+    border-radius: 50%;
+}
+
+.card {
+    margin-left: 10px;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+}
+
+.checked {
+    color: orange;
+}
+
+.upload {
+    margin: 20px auto;
+}

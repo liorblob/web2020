@@ -4,7 +4,7 @@
    $password = "";
    $dbname="noodle";
 
- error_reporting(E_ALL ^ E_WARNING);
+ error_reporting(E_ALL ^ E_WARNING ^ E_DEPRECATED);
 
  // Create connection
  $conn = new mysqli($servername, $username, $password,$dbname);
