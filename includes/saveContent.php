@@ -28,7 +28,8 @@
     $data=addslashes(file_get_contents($_FILES["contentInput"]['tmp_name'])); 
     $file_size=$_FILES["contentInput"]['size'];
     $temp_file_type = $_FILES["contentInput"]["name"];
-    $file_type = end((explode(".", $temp_file_type))); # extra () to prevent notice
+    $temp_file_type2 = explode(".", $temp_file_type);
+    $file_type = end($temp_file_type2);
 
 
     $status = "Pending Approval";
