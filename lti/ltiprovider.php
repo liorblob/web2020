@@ -50,10 +50,31 @@ header('Content-Type: text/html; charset=utf-8');
     echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
   }
   else {
+    $sql = "SELECT DISTINCT u.name as uname, u.profile_pic as user_pic, materials.id AS material_id, materials.name AS material_name, materials.description AS material_desc, materials.file_type AS material_type, courses.name AS course_name , institutions.name AS inst_name,
+                        materials_rating.material_rating AS material_rating
+                        FROM materials INNER JOIN courses ON courses.id= materials.course_id
+                        INNER JOIN institutions ON courses.inst_id = institutions.id
+                        LEFT JOIN 
+                        (SELECT material_id, ROUND(AVG(user_rating),1) AS material_rating
+						FROM materials_rating
+						WHERE status = 'Approved'
+                        AND rating_type = 'material'
+						GROUP BY material_id) AS materials_rating
+                        ON materials.id = materials_rating.material_id
+                        LEFT JOIN users AS u
+                        ON materials.user_id = u.id
+                        WHERE materials.status = 'Approved'
+                        AND courses.name = ?
+                        GROUP BY materials.id
+                        ORDER BY rating DESC;";
+    /*
     $sql = "SELECT m.name AS material_name, m.description AS material_desc, m.file_type AS material_type, m.date AS material_date, m.rating AS material_rating, m.id AS material_id,
-    c.name AS course_name, i.name AS inst_name, u.name AS uname, u.profile_pic as user_pic
-    FROM materials AS m, courses AS c, users AS u, institutions AS i
-    WHERE m.status = 'Approved' AND c.name = ? AND m.course_id = c.id AND c.inst_id = i.id AND u.id = m.user_id";
+    c.name AS course_name, i.name AS inst_name, u.name AS uname, u.profile_pic as user_pic,
+    mr.user_rating AS material_rating
+    FROM materials AS m, courses AS c, users AS u, institutions AS i, materials_rating AS mr
+    WHERE m.status = 'Approved' AND c.name = ? AND m.course_id = c.id AND c.inst_id = i.id AND u.id = m.user_id AND mr.rating_type = 'material' AND mr.material_id = m.id";
+    */
+
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $course_name);
