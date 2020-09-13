@@ -2,11 +2,6 @@
   include 'dbconn.php';
   session_start();
 
-  if(isset($_SESSION["moodle"]) && $_SESSION["moodle"] == true){
-    $_SESSION["id"] = 1;
-    exit;
-  }
-
   if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
     header("location: ../index.php");
     exit;
