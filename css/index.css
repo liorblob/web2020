@@ -1,0 +1,38 @@
+
+#wrapper{
+	background-color: #E2FFE2;
+}
+#internalWrapper{
+	width:80%;
+}
+
+body{
+    background-image: url('../media/background.jpg');
+    direction: rtl;
+}
+
+
+p{
+	font-size:20px;
+}
+
+#logoAndHead { 	
+  width: 80%;
+  margin: auto;
+  text-align:center;
+  display:block;
+}                  
+#logoAndHead p{color:black;}
+#logoAndHead img{width: 50%;}
+
+
+#video {
+    float: right;
+    padding: 40px;
+    margin: auto;
+}
+
+
+.indexPic{
+	height:80%;
+}

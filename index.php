@@ -52,7 +52,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/login.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/about.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -61,20 +62,36 @@
   <script src="javascript/loader.js"></script>
 </head>
 <body>
+    <div id="wrapper" class="container">
+		<div id="internalWrapper" class="container">
+			<header>
+			    <div id="logoAndHead">
+				<img src= "../Noodle/media/logo.jpg" class="img-fluid">
+        <h1>Noodle</h1>
+        <h2>מערכת לשיתוף חומרי לימוד בין סטודנטים</h2>
+				</div>
+			</header>
+			
 
-<div id="main" class="container"></div>
+    <main>
 
-<div class="text-center">
-  <h2 class="pt-4">כניסה למערכת</h2> 
-</div>
+       <section class="text-center mt-4">
+					<p>
+            האתר הוקם על ידי סטודנטים למען סטודנטים.<br>
+            כסטודנטים אנו מכירים היטב את המצוקה במציאת חומרי לימוד במהלך הלימודים באקדמיה.
+            מטרתנו היא הקמת אתר אחוד שיהווה מרכז אחד לשיתוף וחיפוש חומרי לימוד מכל מוסד לימודים ובכל קורס.<br>
+            אנו מזמינים אתכם לשתף, לחפש ולהשאיר חוות דעת על חומרי הלימוד באתר.
+					</p>
 
-<main id="main" class="container">
-    <h2 class="pt-4">התחברות באמצעות משתמש קיים</h2>
+           <video controls>
+               <source src="media/noodle.mp4" type="video/mp4">
+               דפדפן זה לא תומך בוידאו.
+           </video>
 
-    <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="media/googleLogin.png"></a>
-   
-    <a data-toggle="tooltip" title="בקרוב..." data-placement="top" href=""><img class="pt-4" src="media/facebookLogin.png"></a>
-    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+           <h2 class="pt-4">כניסה למערכת</h2> 
+
+
+      <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
       <div class="form-group">
         <label class="pt-4" for="username">שם משתמש</label>
         <input type="username" class="form-control" name="username" id="email" aria-describedby="emailHelp" placeholder="הכנס שם משתמש" required>
@@ -89,15 +106,35 @@
         <label class="form-check-label" for="check">זכור אותי</label>
       </div>
       <button type="submit" class="btn btn-primary">כניסה</button>
-    </form>
-</main>      
+       </form>
+              <h3 class="pt-4">אין לך עדיין משתמש?</h3> 
+              <p><strong><a href="includes/signup.php" class="card-link">הירשם למערכת</a></strong></p> 
 
-<div id="indexFooter">
-  <h3 class="pt-4">אין לך עדיין משתמש?</h3> 
-  <p><strong><a href="includes/signup.html" class="card-link">הירשם למערכת</a></strong></p> 
-  <a class="title" href="includes/about.html">© Noodle</a>
-</div>
+     </section>
 
+    </main>      
+
+
+     <div id="indexFooter">
+        <footer class="mt-3 p-1" id="footer">  
+            <div class="row">
+		        <div class="col-md-4">
+                </div>
+                
+                  <div class="col-md-4">
+                      <a class="title">© Noodle</a>
+			      </div>
+			    
+			    <div class="col-md-4">	
+			    </div>
+	       	</div>
+        </footer>
+    </div>
+ 
+ 
+ 
+	</div>	
+  </div>
 </body>
 
 </html>

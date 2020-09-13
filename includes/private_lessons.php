@@ -31,9 +31,13 @@
             </form>
         </div>
 	    	<div class="col-md-3">
-             <button class="btn btn-primary" onclick="window.location.href='add_teacher.html'">הירשם למאגר מורים פרטיים</button>
+             <button class="btn btn-primary" onclick="window.location.href='teacherSignup.php'">הירשם למאגר מורים פרטיים</button>
         </div>
         </div>
+
+
+        <br><br>
+        <h4 class="pt-4">רשימת מורים פרטיים</h4>
 
 
           <?php
@@ -44,16 +48,23 @@
             FROM teachers as t
             LEFT JOIN users as u ON t.teacher_id=u.id
             LEFT JOIN materials_rating as r ON r.teacher_id = t.teacher_id
-            WHERE t.subject_main LIKE '%".$subject_main."%'
+            WHERE t.status = 'Approved'
+            AND t.subject_main LIKE '%".$subject_main."%'
             GROUP BY t.teacher_id;"; 
 
           }
           else{
-            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.user_rating)/COUNT(r.user_rating),1) as avg_grade
+            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, teachers_rating.rating as AVG_rate
             FROM teachers as t
             LEFT JOIN users as u ON t.teacher_id=u.id
             LEFT JOIN materials_rating as r ON r.teacher_id = t.teacher_id
-            GROUP BY t.teacher_id;";  
+            LEFT JOIN   (SELECT teacher_id, ROUND(AVG(user_rating),1) AS rating
+						FROM materials_rating
+						WHERE status = 'Approved'
+            AND rating_type = 'teacher'
+						GROUP BY teacher_id) AS teachers_rating ON t.teacher_id = teachers_rating.teacher_id
+            WHERE t.status = 'Approved'
+            GROUP BY t.teacher_id";  
           }
 
 
@@ -69,7 +80,7 @@
                 <th>רקע</th>
                 <th>משך שיעור</th>
                 <th>מחיר שיעור</th>
-                <th>דירוג ממוצע</th>
+                <th>דירוג ממוצע (מתוך 5)</th>
                 <th></th>
               </tr>";
               // output data of each row
@@ -89,7 +100,7 @@
                   <td>".$row["background"]."</td>
                   <td>".$row["lesson_time"]."</td>
                   <td>".$row["lesson_price"]."</td>
-                  <td>".$row["avg_grade"]."</td>
+                  <td>".$row["AVG_rate"]."</td>
                   <td>
                   <button value=".$row["teacher_id"]." onclick=idTeacherClick(this) class='btn btn-primary'> פרטים נוספים </button>
                   </td>
@@ -99,7 +110,7 @@
               echo "</table>";
             
           } else {
-              echo "0 results";
+              echo "לא נמצאו מורים פרטיים להצגה";
           }
 
 

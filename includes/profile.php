@@ -99,8 +99,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-3">
+    <div class="col-sm-12">
+      <div class="col-sm-2">
         <div class="card">
           <div class="card-body text-center">
             <img src="getImage.php">

@@ -38,7 +38,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>תאריך</th>
+              <th>תאריך בקשה</th>
               <th>משתמש</th>
               <th>מוסד לימודים</th>
               <th>קורס</th>
@@ -92,12 +92,76 @@
         </table>
       </div>
       <h2 class="pt-4">בקשות מורים פרטיים</h2>
-      <h2 class="pt-4">בקשות משוב</h2>
+        
       <div class="scroll">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>תאריך</th>
+              <th>תאריך בקשה</th>
+              <th>משתמש</th>
+              <th>תחום לימוד</th>
+              <th>משך שיעור</th>
+              <th>מחיר</th>
+              <th>רקע</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <?php
+          
+          // Check connection
+          if ($conn->connect_error) {
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
+          }
+          else { 
+            $id = $_SESSION["id"];
+
+
+            $sql = 'SELECT u.name as name, t.teacher_id AS teacher_id, t.subject_main AS subject_main, t.lesson_time AS lesson_time,
+            t.lesson_price AS lesson_price, t.background AS background, t.telephone AS telephone, t.reg_date AS reg_date
+            FROM teachers AS t
+            LEFT JOIN users AS u
+            ON t.teacher_id = u.id
+            WHERE t.status = "Pending Approval"';
+
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                    <td>'.$row["reg_date"].'</td>
+                    <td>'.$row["name"].'</td>
+                    <td>'.$row["subject_main"].'</td>
+                    <td>'.$row["background"].'</td>
+                    <td>'.$row["lesson_time"].'</td>
+                    <td>'.$row["lesson_price"].'</td>
+                    <td><button value="'."Approved_".$row["teacher_id"].'" onclick=teacherClick(this) class="btn btn-primary">אישור</button></td>
+                    <td><button value="'."Declined_".$row["teacher_id"].'"  onclick=teacherClick(this) class="btn btn-primary">דחיה</button></td>
+                  </tr>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
+            }
+          }
+          ?>
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <h2 class="pt-4">בקשות משוב עבור תכנים</h2>
+      <div class="scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>תאריך בקשה</th>
               <th>משתמש</th>
               <th>שם זיהוי</th>
               <th>כותרת תוכן</th>
@@ -150,6 +214,72 @@
 
 
 
+          </tbody>
+        </table>
+      </div>
+
+
+      <h2 class="pt-4">בקשות משוב עבור מורים</h2>
+      <div class="scroll">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>תאריך בקשה</th>
+              <th>משתמש</th>
+              <th>שם זיהוי</th>
+              <th>מורה מדורג</th>
+              <th>דירוג</th>
+              <th>תגובה</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <?php
+          
+          // Check connection
+          if ($conn->connect_error) {
+              echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
+          }
+          else { 
+            $id = $_SESSION["id"];
+
+
+            $sql = 'SELECT mr.id AS rating_id , mr.user_id AS rater_id, u.name AS rater_username,  mr.user_nickname AS rater_nickname,
+            mr.teacher_id as teacher_id, teacher.name AS teacher_name ,mr.date AS rating_date, mr.user_comment AS comment, mr.user_rating AS rating
+            FROM materials_rating AS mr,
+            users AS u,
+            (SELECT teacher_id, u.id, u.name
+            FROM teachers AS t
+            LEFT JOIN users AS u
+            ON t.teacher_id = u.id) AS teacher
+            WHERE mr.teacher_id = teacher.teacher_id
+            AND rating_type = "teacher"
+            AND mr.status = "Pending Approval"
+            AND mr.user_id = u.id';
+
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<tr>
+                    <td>'.$row["rating_date"].'</td>
+                    <td>'.$row["rater_username"].'</td>
+                    <td>'.$row["rater_nickname"].'</td>
+                    <td>'.$row["teacher_name"].'</td>
+                    <td>'.$row["rating"].'</td>
+                    <td>'.$row["comment"].'</td>
+                    <td><button value="'."Approved_".$row["rating_id"].'" onclick=ratingClick(this) class="btn btn-primary">אישור</button></td>
+                    <td><button value="'."Declined_".$row["rating_id"].'"  onclick=ratingClick(this) class="btn btn-primary">דחיה</button></td>
+                  </tr>';
+                }
+            } else {
+                echo '<h4 class="card-title">לא נמצאו בקשות</h4>';
+            }
+          }
+          ?>
           </tbody>
         </table>
       </div>

@@ -14,6 +14,24 @@ function contentClick(b) {
 
 }
 
+
+function teacherClick(b) {
+
+  var value =  b.value.split("_");
+  var teacher_id = parseInt(value[1]);
+  var status = value[0];
+
+  $.post("updateTeacherStatus.php",
+  {
+    teacher_id: teacher_id,
+    status: status
+  }, function(data, status){
+    window.location.href = "adminApprovals.php";
+  });
+
+}
+
+
 function ratingClick(b) {
 
   var value =  b.value.split("_");
