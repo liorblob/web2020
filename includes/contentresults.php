@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="..\css\contentresults.css">
     <link rel="stylesheet" type="text/css" href="..\css\feedback.css">
+    <link rel="stylesheet" type="text/css" href="..\css\rating.css">
+    <link rel="stylesheet" type="text/css" href="..\css\main.css">
+
 
     <?php
     include "session.php";
@@ -17,7 +20,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="../javascript/contentresults.js"></script>
 
     <script>
@@ -27,21 +29,12 @@
           $(".backdrop").fadeOut(200);
       });
     });
-</script>
+    </script>
 
 
 </head>
 
 <body>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
-
     <div id="header"></div>
 
     <main>
@@ -92,8 +85,9 @@
                         </div>
                     </div>
                 </div>
-                <input type="Submit" value="חפש" class="btn btn-primary">
+                <input type="Submit" value="חפש" class="btn btn-primary"> 
             </form>
+            
 
         </div>
 
@@ -106,14 +100,14 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">הורדה</th>
+                        <th scope="col"></th>
                         <th scope="col">סוג</th>
                         <th scope="col">שם</th>
+                        <th scope="col">תיאור</th>
                         <th scope="col">קורס</th>
                         <th scope="col">מוסד</th>
                         <th scope="col">עדכניות</th>
-                        <th scope="col">דירוג ממוצע</th>
+                        <th scope="col">דירוג ממוצע (מתוך 5)</th>
                         <th scope="col">דרג חומר זה</th>
                     </tr>
                 </thead>
@@ -147,7 +141,7 @@
                         
 
                         $contentName = $_POST["contentName"];
-                        $sql = "SELECT DISTINCT materials.id AS material_id, materials.name AS name, UPPER(materials.file_type) AS file_type, courses.name AS course , institutions.name AS inst,
+                        $sql = "SELECT DISTINCT materials.id AS material_id, materials.name AS name, materials.description AS description, UPPER(materials.file_type) AS file_type, courses.name AS course , institutions.name AS inst,
                         DATE_FORMAT(materials.date, '%d/%m/%Y') AS date, materials_rating.rating AS rating
                         FROM materials INNER JOIN courses ON courses.id= materials.course_id
                         INNER JOIN institutions ON courses.inst_id = institutions.id
@@ -161,12 +155,13 @@
                         WHERE institutions.name LIKE '%".$InputSchool."%'
                         AND materials.name LIKE '%".$contentName."%'
                         AND materials.date BETWEEN '$fromDate' AND '$toDate'
+                        WHERE materials.status = 'Approved'
                         GROUP BY materials.id
                         ORDER BY rating DESC
                         ;";          
                       }
                       else{
-                        $sql = "SELECT DISTINCT materials.id AS material_id, materials.name AS name, UPPER(materials.file_type) AS file_type, courses.name AS course , institutions.name AS inst,
+                        $sql = "SELECT DISTINCT materials.id AS material_id, materials.name AS name, materials.description AS description, UPPER(materials.file_type) AS file_type, courses.name AS course , institutions.name AS inst,
                         DATE_FORMAT(materials.date, '%d/%m/%Y') AS date, materials_rating.rating AS rating
                         FROM materials INNER JOIN courses ON courses.id= materials.course_id
                         INNER JOIN institutions ON courses.inst_id = institutions.id
@@ -177,6 +172,7 @@
                         AND rating_type = 'material'
 						GROUP BY material_id) AS materials_rating
                         ON materials.id = materials_rating.material_id
+                        WHERE materials.status = 'Approved'
                         GROUP BY materials.id
                         ORDER BY rating DESC;";  
                       }
@@ -187,7 +183,6 @@
                             $linenum =1;
                             while($row = $result->fetch_assoc()) {
                                 echo '<tr>
-                                <th scope="row">'.$row["material_id"].'</th>
                                 <td>
                                     <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
                                 </td>
@@ -198,6 +193,7 @@
                                     '.$row["file_type"].'
                                 </td>
                                 <td>'.$row["name"].'</td>
+                                <td>'.$row["description"].'</td>
                                 <td>'.$row["course"].'</td>
                                 <td>'.$row["inst"].'</td>
                                 <td>'.$row["date"].'</td>
@@ -217,6 +213,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 
 
@@ -236,20 +233,22 @@
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">דירוג</label>
-                    <select class="custom-select custom-select-lg mb-3" id="contentRating" name="contentRating" autocomplete="off" value="">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
+                    <br>
+                    <div class="rate">
+                           <input type="radio" id="star5" name="rate" value="5" />
+                           <label for="star5" title="מצויין">5 stars</label>
+                           <input type="radio" id="star4" name="rate" value="4" />
+                           <label for="star4" title="טוב">4 stars</label>
+                           <input type="radio" id="star3" name="rate" value="3" />
+                           <label for="star3" title="בסדר">3 stars</label>
+                           <input type="radio" id="star2" name="rate" value="2" />
+                           <label for="star2" title="לא טוב">2 stars</label>
+                           <input type="radio" id="star1" name="rate" value="1" />
+                           <label for="star1" title="גרוע">1 star</label>
+                    </div>
+                    <br>
                 </div>
-
+                <br>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">תגובה</label>
                     <textarea class="form-control" id="comment" name="comment" rows="3" form="fedform"></textarea>

@@ -11,7 +11,7 @@
     $rating_type = "material";
     $material_id = $_POST["ratingValue"];
     $nickname = $_POST["nickname"];
-    $contentRating = $_POST["contentRating"];
+    $contentRating = $_POST["rate"];
     $comment = $_POST["comment"];
     $status = "Pending Approval";
 
