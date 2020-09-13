@@ -65,9 +65,10 @@
     <div id="wrapper" class="container">
 		<div id="internalWrapper" class="container">
 			<header>
-			    <div id="logoAndHead">
-				<img src= "../Noodle/media/logo.jpg" class="img-fluid">
+        <div id="logoAndHead">
+				<img src= "../Noodle/media/noodles.png" class="img-fluid">
         <h1>Noodle</h1>
+        <br>
         <h2>מערכת לשיתוף חומרי לימוד בין סטודנטים</h2>
 				</div>
 			</header>

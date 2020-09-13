@@ -1,14 +1,18 @@
 
 #wrapper{
-	background-color: #E2FFE2;
+	background-color: #BDD0C6;
 }
 #internalWrapper{
 	width:80%;
 }
 
 body{
-    background-image: url('../media/background.jpg');
+    background: url('../media/background4.jpeg');
+    background-repeat: no-repeat;
+    background-size: 150%;
+    background-position: 50%;
     direction: rtl;
+    
 }
 
 
@@ -17,7 +21,7 @@ p{
 }
 
 #logoAndHead { 	
-  width: 80%;
+  width: 50%;
   margin: auto;
   text-align:center;
   display:block;
