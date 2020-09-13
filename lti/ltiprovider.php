@@ -16,6 +16,7 @@ header('Content-Type: text/html; charset=utf-8');
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/main.css">
   <link rel="stylesheet" type="text/css" href="../css/lti.css">
+  <link rel="stylesheet" type="text/css" href="../css/contentUpload.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -33,7 +34,7 @@ header('Content-Type: text/html; charset=utf-8');
         </div>
     <?php
       $course_name = $lti->getCourseName();
-      echo "<h2>חומרים רלוונטיים לקורס ".$course_name."</h2>";
+      echo '<h2 class="title">חומרים רלוונטיים לקורס '.$course_name.'</h2>';
     } else {
   ?>
     <h2>שגיאה בהפעלת LTI.</h2>
@@ -46,11 +47,9 @@ header('Content-Type: text/html; charset=utf-8');
   <?php
    // Check connection
    if ($conn->connect_error) { 
-    echo $lti->message;
     echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
   }
   else {
-    $_SESSION["moodle"] = true;
     $sql = "SELECT m.name AS material_name, m.description AS material_desc, m.file_type AS material_type, m.date AS material_date, m.rating AS material_rating, m.id AS material_id,
     c.name AS course_name, i.name AS inst_name, u.name AS uname, u.profile_pic as user_pic
     FROM materials AS m, courses AS c, users AS u, institutions AS i
@@ -123,8 +122,32 @@ header('Content-Type: text/html; charset=utf-8');
     $conn->close();
     ?>
     </div>
+    <h2 class="col-sm-2 upload">העלאת תוכן</h2> 
     <div class="row">
-      <a class="upload col-sm-4 btn btn-primary" href="../includes/contentUpload.php">העלאת תוכן</a>
+        <div class="col-sm-8">
+          <form id="contentUploadForm" method="POST" enctype="multipart/form-data" action="saveContentMoodle.php">
+          <h4 class="pt-4">פרטי התוכן</h4>
+            <div class="form-group">
+              <label for="dateInput">תאריך עדכניות</label>
+              <input type="date" class="form-control" id="dateInput" name="dateInput" placeholder="" required>
+            </div>
+            <div class="form-group">
+              <label for="titleInput">כותרת</label>
+              <input type="text" class="form-control" id="titleInput" name="titleInput" placeholder="כותרת התוכן המועלה" required>
+            </div>
+              <div class="form-group">
+                <label for="descriptionInput">תיאור התוכן</label>
+                <textarea class="form-control" id="descriptionInput" name="descriptionInput" rows="3" placeholder="תיאור התוכן המועלה" required></textarea>
+              </div>
+            <h4 class="pt-4">בחירת קובץ</h4>
+            <input type="file" class="form-control-file" id="contentInput" name="contentInput" required>
+            <br>
+            <script src="../javascript/ContentUploader.js"></script>
+            <button type="submit" class="btn btn-primary">העלאה</button> 
+            <input type="hidden" name="course" value=<?php echo '"'.$course_name.'"'; ?> />
+            <br><br>
+          </form>
+      </div>  
     </div>
   <?php
   }
