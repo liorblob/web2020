@@ -20,6 +20,7 @@ header('Content-Type: text/html; charset=utf-8');
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="../javascript/lti.js"></script>
   <title>Noodle LTI</title>
   </head>
    
@@ -65,17 +66,9 @@ header('Content-Type: text/html; charset=utf-8');
                         ON materials.user_id = u.id
                         WHERE materials.status = 'Approved'
                         AND courses.name = ?
-                        GROUP BY materials.id
+                        GROUP BY materials.id                        
                         ORDER BY rating DESC;";
-    /*
-    $sql = "SELECT m.name AS material_name, m.description AS material_desc, m.file_type AS material_type, m.date AS material_date, m.rating AS material_rating, m.id AS material_id,
-    c.name AS course_name, i.name AS inst_name, u.name AS uname, u.profile_pic as user_pic,
-    mr.user_rating AS material_rating
-    FROM materials AS m, courses AS c, users AS u, institutions AS i, materials_rating AS mr
-    WHERE m.status = 'Approved' AND c.name = ? AND m.course_id = c.id AND c.inst_id = i.id AND u.id = m.user_id AND mr.rating_type = 'material' AND mr.material_id = m.id";
-    */
-
-
+   
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $course_name);
     $stmt->execute();
@@ -130,8 +123,8 @@ header('Content-Type: text/html; charset=utf-8');
                 <img class="card-img-bottom" src="data:image/jpeg;base64,'.base64_encode($row['user_pic']).'"/>
                 <p class="card-text">'.$row["uname"].'</p>
                 <div class="btn-group">
-                  <button class="btn btn-link" onclick="download(this)" value="'.$row["material_id"].'">הורדה</button>
-                  <button class="btn btn-link" onclick="rate(this)" value="'.$row["material_id"].'">דירוג</button>
+                  <button class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
+                  <button class="btn btn-link" onclick="rateClick(this)" value="'.$row["material_id"].'">דירוג</button>
                 </div>
              </div>
             </div>';
@@ -169,6 +162,50 @@ header('Content-Type: text/html; charset=utf-8');
             <br><br>
           </form>
       </div>  
+    </div>
+
+    <div class="backdrop">
+        <div id="popdiv" class="container-sm">
+
+            <nav class="navbar navbar-dark bg-primary" id="fednav">
+                <a class="navbar-brand" href="#">הזנת משוב</a>
+            </nav>
+            <form id="fedform" method="post" action="addContentRatingMoodle.php" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">שם הזדהות</label>
+                    <input id="nickname" name="nickname" type="text" class="form-control" placeholder="הזן שם להזדהות" aria-describedby="sizing-addon1" required>
+                    <small id="UsernameHelpBlock" class="form-text text-muted">
+                    הינך יכול להזדהות בשמך, שם המשתמש שלך או לבחור שם אנונימי לבחירתך
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">דירוג</label>
+                    <br>
+                    <div class="rate">
+                           <input type="radio" id="star5" name="rate" value="5" />
+                           <label for="star5" title="מצויין">5 stars</label>
+                           <input type="radio" id="star4" name="rate" value="4" />
+                           <label for="star4" title="טוב">4 stars</label>
+                           <input type="radio" id="star3" name="rate" value="3" />
+                           <label for="star3" title="בסדר">3 stars</label>
+                           <input type="radio" id="star2" name="rate" value="2" />
+                           <label for="star2" title="לא טוב">2 stars</label>
+                           <input type="radio" id="star1" name="rate" value="1" />
+                           <label for="star1" title="גרוע">1 star</label>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">תגובה</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" form="fedform"></textarea>
+                    <small id="commentHelpBlock" class="form-text text-muted">התגובה תתפרסם לכל המשתמשים במערכת. אנא מכם, שמרו על שפה נאותה</small>
+                    <input id="ratingValue" name="ratingValue" type="hidden"/>
+                </div>
+                <input id="sumbit_btn" class="btn btn-primary" type="submit" value="אישור"/>
+                <input id="exitButton" class="btn btn-primary"  type="reset" value="ביטול"/>
+            </form>
+        </div>
     </div>
   <?php
   }
