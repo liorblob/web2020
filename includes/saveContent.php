@@ -37,16 +37,17 @@
     $sql = "INSERT into materials(name,description,date,course_id,data,user_id,status,file_type,file_size)
       values
       ('".$name."','".$description."','".$date."','".$course_id."','".$data."','".$id."','".$status."','".$file_type."','".$file_size."')";
-
+    
     if ($conn->query($sql)==FALSE){
+      echo "error";
       echo $sql;
       $conn->error;
       exit();
     }
-    echo "<script type='text/javascript'>alert('התוכן הועלה בהצלחה');</script>";
     $conn->close();
   }
 ?>
+
 
 <!DOCTYPE html>
 <head>

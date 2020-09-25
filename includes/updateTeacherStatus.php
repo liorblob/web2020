@@ -10,7 +10,7 @@
 
     include 'dbconn.php';
     $sql = "UPDATE teachers SET status = '$status' WHERE teacher_id = '$teacher_id'";
-   
+
     if (!$conn->query($sql)) { 
         echo "<script type='text/javascript'>alert('אירעה שגיאה בעדכון הקובץ');</script>";
     }
