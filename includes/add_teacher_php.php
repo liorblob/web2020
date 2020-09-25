@@ -19,7 +19,6 @@
   $sql = "INSERT INTO teachers (teacher_id, subject_main, lesson_time, lesson_price, background, telephone, reg_date, status)
     VALUES ('$id','$subject_main','$lesson_time','$lesson_price','$background','$telephone',now(),'$status')";
   $result = $conn->query($sql);
-echo $sql;
   $conn->close();
 
 		
