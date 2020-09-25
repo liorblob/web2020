@@ -50,3 +50,12 @@ nav form {
 div.scroll {
     overflow: auto;
 }
+
+.verticalText {
+    vertical-align: middle;
+}
+
+#verticalText td 
+{
+    vertical-align: middle;
+}

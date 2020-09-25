@@ -17,3 +17,8 @@ img {
     width:150px;
     height:200px;
 }
+
+.typeImage img{
+    width:30%;
+    height:30%;
+}

@@ -121,7 +121,7 @@
     <div class="col-sm-12">
       <h2 class="pt-4">ההעלאות שלי</h2>
       <div class="scroll">
-        <table class="table table-striped">
+        <table class="table table-striped" id="verticalText">
           <thead>
             <tr>
               <th>תאריך</th>
@@ -154,13 +154,39 @@
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
+                  switch($row["material_type"]){
+                    case "PDF":
+                      $type_icon = "pdf.svg";
+                    break;
+                    case "DOC":
+                    case "DOCX":
+                      $type_icon = "word2.svg";
+                    break;
+                    case "PPT":
+                    case "PPTX":
+                      $type_icon = "powerpoint2.svg";
+                    break;
+                    case "XLS":
+                    case "XLSX":
+                    case "CSV":
+                      $type_icon = "excel2.svg";
+                    break;
+                    case "JPEG":
+                    case "JPG":
+                    case "PNG":
+                        $type_icon = "picture.svg";
+                    break;
+                    default:
+                      $type_icon = "doc.svg";
+                  }
+
                     echo '<tr>
                     <td>'.$row["material_date"].'</td>
                     <td>'.$row["inst_name"].'</td>
                     <td>'.$row["course_name"].'</td>
                     <td>'.$row["material_name"].'</td>
                     <td>'.$row["material_desc"].'</td>
-                    <td>'.$row["material_type"].'</td>
+                    <td class="typeImage"><img class="icon" src="../media/'.$type_icon.'"/></td>
                     <td>'.$row["material_status"].'</td>
                   </tr>';
                 }
