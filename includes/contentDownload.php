@@ -23,7 +23,9 @@
     header("Content-length: $size");
     header("Content-type: $type");
     header("Content-Disposition: attachment; filename=$name");
-    ob_clean();
+    if(ob_get_length() > 0) {
+      ob_clean();
+    }
     flush();
     echo $data;
     $conn->close();
