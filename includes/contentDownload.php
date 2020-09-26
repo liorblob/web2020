@@ -25,8 +25,7 @@
     header("Content-Disposition: attachment; filename=$name");
     ob_clean();
     flush();
-    $content = stripslashes($data);
-    echo $content;
+    echo $data;
     $conn->close();
     exit;
   }

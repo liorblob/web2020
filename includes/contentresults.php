@@ -206,9 +206,7 @@
                                 <td>
                                     <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
                                 </td>
-                                <td>
-                                <img class="icon" src="../media/'.$type_icon.'"/>
-                                </td>
+                                <td><img class="icon" src="../media/'.$type_icon.'"/></td>
                                 <td class="verticalText">'.$row["name"].'</td>
                                 <td>'.$row["description"].'</td>
                                 <td>'.$row["course"].'</td>

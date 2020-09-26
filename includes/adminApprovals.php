@@ -35,7 +35,7 @@
     <div class="col-sm-12">
       <h2 class="pt-4">בקשות העלאת תכנים</h2>
       <div class="scroll">
-        <table class="table table-striped">
+        <table class="table table-striped" id="verticalText">
           <thead>
             <tr>
               <th>תאריך בקשה</th>
@@ -94,7 +94,7 @@
       <h2 class="pt-4">בקשות מורים פרטיים</h2>
         
       <div class="scroll">
-        <table class="table table-striped">
+        <table class="table table-striped" id="verticalText">
           <thead>
             <tr>
               <th>תאריך בקשה</th>
@@ -158,7 +158,7 @@
 
       <h2 class="pt-4">בקשות משוב עבור תכנים</h2>
       <div class="scroll">
-        <table class="table table-striped">
+        <table class="table table-striped" id="verticalText">
           <thead>
             <tr>
               <th>תאריך בקשה</th>
@@ -221,7 +221,7 @@
 
       <h2 class="pt-4">בקשות משוב עבור מורים</h2>
       <div class="scroll">
-        <table class="table table-striped">
+        <table class="table table-striped" id="verticalText">
           <thead>
             <tr>
               <th>תאריך בקשה</th>
