@@ -34,7 +34,7 @@
 
 <body>
 <script type='text/javascript'>
-window.location.href = "private_lessons.php"
+window.location.href = "uploadNewTeacherMessage.html"
 </script>
 
 </body>

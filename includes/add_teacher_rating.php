@@ -16,8 +16,22 @@
     $conn->query($sql3);
     echo $sql3;
 
-   header( 'Location: private_lessons.php' ) ;
+//   header( 'Location: private_lessons.php' ) ;
 
    $conn->close(); 
 ?>
 
+<!DOCTYPE html>
+<head>
+<title>Noodle</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script type='text/javascript'>
+window.location.href = "uploadRatingMessage.html"
+</script>
+
+</body>
+</html>
