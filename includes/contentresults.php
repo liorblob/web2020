@@ -87,17 +87,11 @@
                 </div>
                 <input type="Submit" value="חפש" class="btn btn-primary"> 
             </form>
-            
-
         </div>
-
-
-
-
 
         <div class="table-responsive-sm">
             <h2>תוצאות חיפוש</h2>
-            <table class="table table-striped">
+            <table class="table table-striped" id="verticalText">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -182,17 +176,38 @@
                             // output data of each row
                             $linenum =1;
                             while($row = $result->fetch_assoc()) {
+                                switch($row["file_type"]){
+                                    case "PDF":
+                                      $type_icon = "pdf.svg";
+                                    break;
+                                    case "DOC":
+                                    case "DOCX":
+                                      $type_icon = "word2.svg";
+                                    break;
+                                    case "PPT":
+                                    case "PPTX":
+                                      $type_icon = "powerpoint2.svg";
+                                    break;
+                                    case "XLS":
+                                    case "XLSX":
+                                    case "CSV":
+                                      $type_icon = "excel2.svg";
+                                    break;
+                                    case "JPEG":
+                                    case "JPG":
+                                    case "PNG":
+                                        $type_icon = "picture.svg";
+                                    break;
+                                    default:
+                                      $type_icon = "doc.svg";
+                                  }
+
                                 echo '<tr>
                                 <td>
                                     <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
                                 </td>
-                                <td>
-                                 <!--
-                                    <img  src="..\media\pdf.png" style="width:2em; height:3em;"</img>
-                                    -->
-                                    '.$row["file_type"].'
-                                </td>
-                                <td>'.$row["name"].'</td>
+                                <td><img class="icon" src="../media/'.$type_icon.'"/></td>
+                                <td class="verticalText">'.$row["name"].'</td>
                                 <td>'.$row["description"].'</td>
                                 <td>'.$row["course"].'</td>
                                 <td>'.$row["inst"].'</td>

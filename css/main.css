@@ -1,5 +1,5 @@
 body {
-    background-color: #f2f2f2;
+    background-color: #EAF2F8;
 }
 
 nav {
@@ -38,9 +38,21 @@ nav form {
     bottom: 0px;
     left: 0px;
     right: 0px;
-    margin-bottom: 0px;
     text-align: center;
+	font-size:15px;
+    background-color: #5DADE2;
+    color: white;
+    margin-top: 50px;
+
 }
+
+#footerLogo
+img{width: 10%;}
+
+footer h6 {
+    display: inline;
+    margin-right: 1em;
+  }
 
 
 .tooltip {
@@ -49,4 +61,13 @@ nav form {
 
 div.scroll {
     overflow: auto;
+}
+
+.verticalText {
+    vertical-align: middle;
+}
+
+#verticalText td 
+{
+    vertical-align: middle;
 }
