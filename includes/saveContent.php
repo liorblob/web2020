@@ -42,8 +42,10 @@
       echo "error";
       echo $sql;
       $conn->error;
-      exit();
-    }
+      echo "<script type='text/javascript'>
+      window.location.href = 'failedMessage.html'
+      </script>";
+       }
     $conn->close();
   }
 ?>
@@ -58,7 +60,8 @@
 
 <body>
 <script type='text/javascript'>
-   window.location.href = "contentUpload.php"
+      window.location.href = "uploadContentMessage.html"
+
 </script>
 
 </body>
