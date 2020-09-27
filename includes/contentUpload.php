@@ -15,29 +15,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-
-  <script>
-    $(document).ready(function() {
-      $('#contentUploadForm').on('submit', function(e){
-          $('#contentUpload').modal('show');
-          //e.preventDefault();
-      });
-    });
-    </script>
 </head>
 <body>
-  <div class="modal fade" id="contentUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h4 class="modal-title">אנו מודים לך על העלאת התוכן<br>בקשתך נקלטה ותועבר לאישור מנהל</h4>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="window.location.href='home.php';">סגור</button>
-      </div>
-      </div>
-    </div>
-  </div>
   <div id="header"></div>
   <div class="text-center">
     <h2 class="pt-4">העלאת תוכן</h2> 
@@ -84,7 +63,7 @@
         <h4 class="pt-4">בחירת קובץ</h4>
         <input type="file" class="form-control-file" id="contentInput" name="contentInput" required>
         <br>
-        <script src="../javascript/ContentUploader.js"></script>
+        <script src="../javascript/contentUploader.js"></script>
         <button type="submit" class="btn btn-primary">העלאה</button> 
         <br><br>
 
