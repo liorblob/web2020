@@ -49,6 +49,16 @@ nav form {
 #footerLogo
 img{width: 10%;}
 
+#uploadMessage {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    font-size:30px;
+    direction:rtl;
+
+}
+
 footer h6 {
     display: inline;
     margin-right: 1em;
