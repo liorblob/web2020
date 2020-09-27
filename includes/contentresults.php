@@ -102,7 +102,7 @@
                         <th scope="col">מוסד</th>
                         <th scope="col">עדכניות</th>
                         <th scope="col">דירוג ממוצע (מתוך 5)</th>
-                        <th scope="col">דרג חומר זה</th>
+                        <th scope="col">דירוג ותגובות</th>
                     </tr>
                 </thead>
 
@@ -149,7 +149,7 @@
                         WHERE institutions.name LIKE '%".$InputSchool."%'
                         AND materials.name LIKE '%".$contentName."%'
                         AND materials.date BETWEEN '$fromDate' AND '$toDate'
-                        WHERE materials.status = 'Approved'
+                        AND materials.status = 'Approved'
                         GROUP BY materials.id
                         ORDER BY rating DESC
                         ;";          
@@ -204,17 +204,17 @@
 
                                 echo '<tr>
                                 <td>
-                                    <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'">הורדה</button>
+                                    <button type="button" class="btn btn-link" onclick="downloadClick(this)" value="'.$row["material_id"].'"><img class="icon" src="../media/download.svg"/>הורדה</button>
                                 </td>
                                 <td><img class="icon" src="../media/'.$type_icon.'"/></td>
-                                <td class="verticalText">'.$row["name"].'</td>
+                                <td>'.$row["name"].'</td>
                                 <td>'.$row["description"].'</td>
                                 <td>'.$row["course"].'</td>
                                 <td>'.$row["inst"].'</td>
                                 <td>'.$row["date"].'</td>
                                 <td>'.$row["rating"].'</td>
                                 <td>
-                                    <button value="'.$row["material_id"].'" onclick="rateClick(this)" class="btn btn-link">דרג</button>
+                                    <button value="'.$row["material_id"].'" onclick="rateClick(this)" class="btn btn-link">דירוג</button>
                                 </td>
 
                                 </tr>';
@@ -240,7 +240,7 @@
             </nav>
             <form id="fedform" method="post" action="addContentRating.php" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label for="formGroupExampleInput">שם הזדהות</label>
+                    <label>שם הזדהות</label>
                     <input id="nickname" name="nickname" type="text" class="form-control" placeholder="הזן שם להזדהות" aria-describedby="sizing-addon1" required>
                     <small id="UsernameHelpBlock" class="form-text text-muted">
                     הינך יכול להזדהות בשמך, שם המשתמש שלך או לבחור שם אנונימי לבחירתך
@@ -265,7 +265,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">תגובה</label>
+                    <label>תגובה</label>
                     <textarea class="form-control" id="comment" name="comment" rows="3" form="fedform"></textarea>
                     <small id="commentHelpBlock" class="form-text text-muted">התגובה תתפרסם לכל המשתמשים במערכת. אנא מכם, שמרו על שפה נאותה</small>
                     <input id="ratingValue" name="ratingValue" type="hidden"/>

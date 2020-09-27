@@ -29,8 +29,7 @@
     $data=addslashes(file_get_contents($_FILES["contentInput"]['tmp_name'])); 
     $file_size=$_FILES["contentInput"]['size'];
     $temp_file_type = $_FILES["contentInput"]["name"];
-    $temp_file_type2 = explode(".", $temp_file_type);
-    $file_type = end($temp_file_type2);
+    $file_type = end((explode(".", $temp_file_type))); # extra () to prevent notice
 
 
     $status = "Pending Approval";
@@ -44,7 +43,23 @@
       $conn->error;
       exit();
     }
-    echo '<h4 style="text-align:center">התוכן נשמר בהצלחה. אנא רענן את העמוד</h4>';
+    echo "<script type='text/javascript'>alert('התוכן הועלה בהצלחה');</script>";
     $conn->close();
   }
 ?>
+
+<!DOCTYPE html>
+<head>
+  <title>Noodle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script type='text/javascript'>
+   window.location.href = "../index.php"
+</script>
+
+</body>
+
+</html>

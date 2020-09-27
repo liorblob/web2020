@@ -26,16 +26,18 @@
       <?php
       $material_id = $_GET["id"];
 
-      $content_sql = "SELECT name, description, UPPER(file_type) AS type, date, course_id, user_id
+      $content_sql = "SELECT materials.name AS material_name, materials.description AS material_desc, UPPER(file_type) AS material_type, materials.date AS material_date, materials.course_id, materials.user_id, users.name AS user_uploader
       FROM materials
-      WHERE id = '$material_id';";  
+      LEFT JOIN users ON materials.user_id = users.id
+      WHERE materials.id = '$material_id';";  
       
       $content_data = $conn->query($content_sql);
       $row = $content_data->fetch_assoc();
-      $content_name = $row["name"];
-      $content_date = $row["date"];
-      $content_type = $row["type"];
-      $content_desc = $row["description"];
+      $content_name = $row["material_name"];
+      $content_date = $row["material_date"];
+      $content_type = $row["material_type"];
+      $content_desc = $row["material_desc"];
+      $content_uploader = $row["user_uploader"];
       
       
 
@@ -48,9 +50,7 @@
       <p><b>שם הקובץ:</b> <?php echo $content_name ?></p>
       <p><b>תיאור הקובץ:</b> <?php echo $content_desc ?></p>
       <p><b>סוג הקובץ:</b> <?php echo $content_type ?></p>
-
-      <p><b>הועלה ע"י:</b> </p>
-
+      <p><b>הועלה ע"י:</b> <?php echo $content_uploader ?></p>
       <p><b>תאריך העלאה:</b> <?php echo $content_date ?></p>
 
       <br><br>
@@ -61,20 +61,19 @@
                         <th scope="col">תאריך</th>
                         <th scope="col">כינוי</th>
                         <th scope="col">תגובה</th>
-                        <th scope="col">דירוג</th>
+                        <th scope="col">דירוג (מתוך 5)</th>
                     </tr>
                 </thead>
 
                 <tbody>
                 <?php     
-                    $sql = "SELECT material_id, date, user_nickname, user_comment, user_rating FROM noodle.materials_rating
+                    $sql = "SELECT material_id, date, user_nickname, user_comment, user_rating FROM materials_rating
                     WHERE rating_type = 'material'
-                    AND material_id = '$material_id';";  
+                    AND material_id = '$material_id'";  
                     
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
-                        $linenum =1;
                         while($row = $result->fetch_assoc()) {
                             echo '<tr>
                             <td>'.$row["date"].'</td>

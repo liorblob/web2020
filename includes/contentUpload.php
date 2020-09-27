@@ -57,7 +57,10 @@
               echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
           }
           else { 
-            $sql = 'SELECT courses.name AS course_name, institutions.name AS inst_name FROM courses, institutions WHERE courses.inst_id = institutions.id';
+            $sql = 'SELECT courses.name AS course_name, institutions.name AS inst_name 
+            FROM courses, institutions 
+            WHERE courses.inst_id = institutions.id
+            ORDER BY courses.name ASC';
             $result = $conn->query($sql);
             // output data of each row
             while($row = $result->fetch_assoc()) {
