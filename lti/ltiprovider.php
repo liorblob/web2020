@@ -65,6 +65,7 @@ header('Content-Type: text/html; charset=utf-8');
                         ON materials.user_id = u.id
                         WHERE materials.status = 'Approved'
                         AND courses.name = ?
+<<<<<<< HEAD
                         GROUP BY materials.id
                         ORDER BY rating DESC;";
     /*
@@ -76,13 +77,15 @@ header('Content-Type: text/html; charset=utf-8');
     */
 
 
+=======
+                        GROUP BY materials.id                        
+                        ORDER BY material_rating DESC;";
+   
+>>>>>>> aa1474e91d460821bea649b6f29e4d172ccc5e7e
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $course_name);
     $stmt->execute();
     $result = $stmt->get_result();
-    if(!$result){
-      echo $sql;
-    }
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             switch($row["material_type"]){
@@ -95,7 +98,7 @@ header('Content-Type: text/html; charset=utf-8');
               break;
               case "ppt":
               case "pptx":
-                $type_icon = "ppoint.svg";
+                $type_icon = "powerpoint.svg";
               break;
               case "xls":
               case "xlsx":
@@ -124,7 +127,8 @@ header('Content-Type: text/html; charset=utf-8');
             echo '
             <div class="col-md-3 card">
               <div class="card-body">
-                <h4 class="card-title">'.$row["material_name"].' <img class="icon" src="../media/'.$type_icon.'"/></h4>'
+                <h4 class="card-title">'.$row["material_name"].' <img class="icon" src="../media/'.$type_icon.'"/></h4>
+                <p class="card-text">'.$row["inst_name"].'</p>'
                 .$rating.'
                 <p class="card-text">'.$row["material_desc"].'</p>             
                 <img class="card-img-bottom" src="data:image/jpeg;base64,'.base64_encode($row['user_pic']).'"/>

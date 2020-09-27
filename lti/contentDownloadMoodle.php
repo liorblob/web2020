@@ -1,13 +1,7 @@
 <?php
-  include 'dbconn.php';
-  session_start();
-  if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"] == true){
-    header("location: ../index.php");
-    exit;
-  }
+  include '../includes/dbconn.php';
 
   $material_id = $_GET["id"];
-
   // Check connection
   if ($conn->connect_error) {
       echo '<h4 class="alert-danger">תקלה בהתחברות למסד הנתונים: '. $conn->connect_error .'</h4>';
@@ -21,7 +15,8 @@
     $data = $row["data"];
     $name = $row["name"].".".$type;
     header("Content-length: $size");
-    header("Content-type: $type");
+    header('Content-Type: application/octet-stream');
+    header('Content-Transfer-Encoding: binary');
     header("Content-Disposition: attachment; filename=$name");
     if(ob_get_length() > 0) {
       ob_clean();

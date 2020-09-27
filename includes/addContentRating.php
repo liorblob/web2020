@@ -34,7 +34,7 @@
 
 <body>
 <script type='text/javascript'>
-   window.location.href = "contentresults.php"
+   window.location.href = "uploadRatingMessage.html"
 </script>
 
 </body>
