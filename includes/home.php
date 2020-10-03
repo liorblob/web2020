@@ -32,7 +32,7 @@
   
     <section class="col-sm-3">
       <div class="container">
-        <div class="card" style="width:300px;height:550px"">
+        <div class="card" style="width:300px;height:550px">
         <img class="card-img-top" src="../media/search.jpg" alt="Card image" style="width:100%">
         <div class="card-body">
           <h4 class="card-title">חיפוש חומרי לימוד</h4>
@@ -44,7 +44,7 @@
     </section>
     <section class="col-sm-3">
           <div class="container">
-            <div class="card" style="width:300px;height:550px"">
+            <div class="card" style="width:300px;height:550px">
             <img class="card-img-top" src="../media/sharing.png" alt="Card image" style="width:100%">
             <div class="card-body">
               <h4 class="card-title">שיתוף חומרי לימוד</h4>
