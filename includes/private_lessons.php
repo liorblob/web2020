@@ -44,14 +44,18 @@
 
           if($_SERVER["REQUEST_METHOD"] == "POST"){
             $subject_main = $_POST["subject_main"];
-            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, ROUND(SUM(r.user_rating)/COUNT(r.user_rating),1) as avg_grade
+            $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, teachers_rating.rating as AVG_rate
             FROM teachers as t
             LEFT JOIN users as u ON t.teacher_id=u.id
             LEFT JOIN materials_rating as r ON r.teacher_id = t.teacher_id
+            LEFT JOIN   (SELECT teacher_id, ROUND(AVG(user_rating),1) AS rating
+            FROM materials_rating
+            WHERE status = 'Approved'
+            AND rating_type = 'teacher'
+            GROUP BY teacher_id) AS teachers_rating ON t.teacher_id = teachers_rating.teacher_id
             WHERE t.status = 'Approved'
             AND t.subject_main LIKE '%".$subject_main."%'
-            GROUP BY t.teacher_id;"; 
-
+            GROUP BY t.teacher_id"; 
           }
           else{
             $sql = "SELECT t.teacher_id, u.name, u.profile_pic ,t.subject_main, t.lesson_time, t.lesson_price, t.background, t.telephone, teachers_rating.rating as AVG_rate
