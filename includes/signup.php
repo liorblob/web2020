@@ -67,7 +67,7 @@ $(document).ready(function() {
           <div class="form-group">
           <label for="profilePic">בחר תמונת פרופיל</label>
             <div class="profileImage">
-              <input type="file" class="form-control-file" id="imageUpload" name="imageUpload">
+              <input type="file" class="form-control" id="imageUpload" name="imageUpload">
               <div id="image-holder"></div>
               <script src="../javascript/imageUploader.js"></script>
             </div>
