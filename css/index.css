@@ -9,8 +9,12 @@
 body{
     background: url('../media/background4.jpeg');
     background-repeat: no-repeat;
-    background-size: 150%;
-    background-position: 50%;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     direction: rtl;
     
 }
